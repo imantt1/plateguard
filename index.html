@@ -61,8 +61,9 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center center;
   display: block;
+  filter: saturate(1.1) contrast(1.05);
 }
 
 /* Multi-layer gradient overlay for depth & legibility */
@@ -70,19 +71,19 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Left-heavy gradient so text area is dark, right side lets image breathe */
+  /* Left-heavy gradient so text area is legible, right side lets image breathe */
   background:
     linear-gradient(to right,
-      rgba(12,28,51,0.97) 0%,
-      rgba(12,28,51,0.88) 42%,
-      rgba(12,28,51,0.55) 68%,
-      rgba(12,28,51,0.30) 100%
+      rgba(12,28,51,0.88) 0%,
+      rgba(12,28,51,0.72) 38%,
+      rgba(12,28,51,0.38) 65%,
+      rgba(12,28,51,0.18) 100%
     ),
     linear-gradient(to bottom,
-      rgba(12,28,51,0.55) 0%,
+      rgba(12,28,51,0.35) 0%,
       transparent 30%,
       transparent 70%,
-      rgba(12,28,51,0.75) 100%
+      rgba(12,28,51,0.65) 100%
     );
 }
 
@@ -117,8 +118,7 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   padding: 5rem 5%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: minmax(0, 620px);
   align-items: center;
 }
 
@@ -280,107 +280,6 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   letter-spacing: 1px;
 }
 
-/* Right col — visual block */
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  animation: fadeSlideUp .8s ease .2s both;
-}
-
-.hero-img-main {
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(245,184,0,.12);
-  position: relative;
-}
-.hero-img-main::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  border: 1px solid rgba(245,184,0,.15);
-  pointer-events: none;
-}
-.hero-img-main img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-}
-
-/* "Certified" stamp on image */
-.hero-cert {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background: rgba(12,28,51,.92);
-  border: 1px solid rgba(245,184,0,.4);
-  border-radius: 4px;
-  padding: .6rem .9rem;
-  text-align: center;
-  backdrop-filter: blur(8px);
-}
-.hero-cert-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--y);
-  line-height: 1;
-}
-.hero-cert-lbl {
-  font-size: .56rem;
-  color: rgba(255,255,255,.5);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-top: 2px;
-}
-
-.hero-img-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.hero-img-sm {
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0,0,0,.3);
-  position: relative;
-}
-.hero-img-sm::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  border: 1px solid rgba(245,184,0,.10);
-  pointer-events: none;
-}
-.hero-img-sm img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-
-/* Product ref chips below images */
-.hero-ref-chips {
-  display: flex;
-  gap: .5rem;
-  justify-content: center;
-}
-.ref-chip {
-  background: rgba(245,184,0,.1);
-  border: 1px solid rgba(245,184,0,.25);
-  color: var(--y);
-  font-size: .68rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 2px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
 /* Scroll cue */
 .scroll-cue {
   position: absolute;
@@ -421,18 +320,16 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
 @media(max-width:960px){
   .hero-inner {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
     padding: 3rem 5% 4rem;
   }
   .hero-overlay {
     background: linear-gradient(to bottom,
-      rgba(12,28,51,0.95) 0%,
-      rgba(12,28,51,0.85) 60%,
-      rgba(12,28,51,0.92) 100%
+      rgba(12,28,51,0.85) 0%,
+      rgba(12,28,51,0.68) 55%,
+      rgba(12,28,51,0.85) 100%
     );
   }
   .hero h1 { font-size: clamp(2.4rem, 8vw, 3.4rem) }
-  .hero-right { display: none }
   .hero-stripe { display: none }
 }
 @media(max-width:500px){
@@ -660,7 +557,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
       <div class="h-badge">
         <span class="h-badge-dot" aria-hidden="true"></span>
-        Protección pasiva · Sin mantenimiento · HDPE certificado
+        Sectores: Oil&Gas · Energía · Minería
       </div>
 
       <h1>
@@ -700,35 +597,6 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
       </div>
 
     </div><!-- /hero-left -->
-
-    <!-- RIGHT: Product visuals -->
-    <div class="hero-right" aria-hidden="true">
-
-      <div class="hero-img-main">
-        <img src="pg3-real.jpg" alt="Barrera PlateGuard PG-3 instalada en zanja"/>
-        <div class="hero-cert">
-          <div class="hero-cert-num">32T</div>
-          <div class="hero-cert-lbl">Certificado</div>
-        </div>
-      </div>
-
-      <div class="hero-img-row">
-        <div class="hero-img-sm">
-          <img src="pg1-real.jpg" alt="PlateGuard PG-1"/>
-        </div>
-        <div class="hero-img-sm">
-          <img src="pines.jpg" alt="Pines de sujeción PlateGuard"/>
-        </div>
-      </div>
-
-      <div class="hero-ref-chips">
-        <span class="ref-chip">PG-1</span>
-        <span class="ref-chip">PG-2</span>
-        <span class="ref-chip">PG-3</span>
-        <span class="ref-chip">Pines</span>
-      </div>
-
-    </div><!-- /hero-right -->
 
   </div><!-- /hero-inner -->
 

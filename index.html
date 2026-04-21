@@ -39,405 +39,370 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
 .page{display:none}.page.active{display:block}
 
 /* ═══════════════════════════════════════════
-   HERO — REDESIGNED
+   HERO — MODERN OVERLAY DESIGN
 ═══════════════════════════════════════════ */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding-top: 66px;
-  background: var(--b);
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding-top:66px;
+  background:var(--b);
+  isolation:isolate;
 }
 
-/* Background image layer */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+/* Imagen de fondo */
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:-2;
 }
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-  display: block;
+.hero-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
+  transform:scale(1.05);
+  animation:heroZoom 18s ease-out forwards;
+}
+@keyframes heroZoom{
+  from{transform:scale(1.12)}
+  to{transform:scale(1.0)}
 }
 
-/* Multi-layer gradient overlay for depth & legibility */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  /* Left-heavy gradient so text area is dark, right side lets image breathe */
+/* Overlay gradiente oscuro multicapa — legibilidad máxima */
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  z-index:-1;
   background:
-    linear-gradient(to right,
-      rgba(12,28,51,0.97) 0%,
-      rgba(12,28,51,0.88) 42%,
-      rgba(12,28,51,0.55) 68%,
-      rgba(12,28,51,0.30) 100%
+    linear-gradient(
+      115deg,
+      rgba(12,28,51,0.92) 0%,
+      rgba(12,28,51,0.78) 40%,
+      rgba(12,28,51,0.55) 75%,
+      rgba(12,28,51,0.45) 100%
     ),
-    linear-gradient(to bottom,
-      rgba(12,28,51,0.55) 0%,
+    linear-gradient(
+      to bottom,
+      rgba(12,28,51,0.35) 0%,
       transparent 30%,
-      transparent 70%,
-      rgba(12,28,51,0.75) 100%
+      transparent 65%,
+      rgba(12,28,51,0.80) 100%
     );
 }
 
-/* Subtle noise texture for depth */
-.hero-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  opacity: 0.35;
+/* Línea amarilla decorativa lateral */
+.hero-overlay::before{
+  content:'';
+  position:absolute;
+  left:5%;
+  top:20%;
+  bottom:20%;
+  width:2px;
+  background:linear-gradient(to bottom, transparent 0%, var(--y) 20%, var(--y) 80%, transparent 100%);
+  opacity:.5;
 }
 
-/* Accent diagonal stripe — industrial feel */
-.hero-stripe {
-  position: absolute;
-  top: 0;
-  right: 30%;
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent 0%, var(--y) 25%, var(--y) 75%, transparent 100%);
-  opacity: 0.18;
-  z-index: 2;
+/* Contenedor interno */
+.hero-inner{
+  position:relative;
+  z-index:1;
+  max-width:1240px;
+  margin:0 auto;
+  padding:6rem 5% 5rem;
+  width:100%;
 }
 
-/* Inner content */
-.hero-inner {
-  position: relative;
-  z-index: 3;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 5rem 5%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+.hero-content{
+  max-width:780px;
+  display:flex;
+  flex-direction:column;
 }
 
-/* Left col — main content */
-.hero-left {
-  display: flex;
-  flex-direction: column;
+/* Badge superior */
+.h-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(245,184,0,0.12);
+  border:1px solid rgba(245,184,0,0.40);
+  color:var(--y);
+  padding:8px 18px;
+  border-radius:50px;
+  font-size:.70rem;
+  font-weight:700;
+  letter-spacing:2.2px;
+  text-transform:uppercase;
+  margin-bottom:2rem;
+  width:fit-content;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  animation:fadeSlideUp .7s ease both;
 }
-
-/* Pre-title badge */
-.h-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(245,184,0,0.10);
-  border: 1px solid rgba(245,184,0,0.35);
-  color: var(--y);
-  padding: 7px 16px;
-  border-radius: 3px;
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  width: fit-content;
-  animation: fadeSlideUp .6s ease both;
+.h-badge-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--y);
+  box-shadow:0 0 0 0 rgba(245,184,0,.7);
+  animation:pulseDot 2s infinite;
 }
-.h-badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--y);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100%{ opacity:1; transform:scale(1) }
-  50%{ opacity:.5; transform:scale(1.4) }
+@keyframes pulseDot{
+  0%{box-shadow:0 0 0 0 rgba(245,184,0,.6)}
+  70%{box-shadow:0 0 0 8px rgba(245,184,0,0)}
+  100%{box-shadow:0 0 0 0 rgba(245,184,0,0)}
 }
 
 /* H1 */
-.hero h1 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
-  font-weight: 900;
-  line-height: 1.0;
-  color: var(--w);
-  letter-spacing: -0.5px;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  animation: fadeSlideUp .7s ease .1s both;
+.hero h1{
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:clamp(2.6rem, 6vw, 5.2rem);
+  font-weight:900;
+  line-height:1.02;
+  color:var(--w);
+  letter-spacing:-1px;
+  text-transform:uppercase;
+  margin-bottom:1.8rem;
+  text-shadow:0 2px 30px rgba(0,0,0,.4);
+  animation:fadeSlideUp .8s ease .1s both;
 }
-.hero h1 .accent {
-  color: var(--y);
-  display: block;
+.hero h1 .thin{
+  display:block;
+  font-family:'Inter', sans-serif;
+  font-size:.85rem;
+  font-weight:600;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.65);
+  margin-bottom:1rem;
+  text-shadow:none;
 }
-.hero h1 .thin {
-  font-weight: 600;
-  opacity: 0.75;
-  font-size: 75%;
-  letter-spacing: 3px;
-  display: block;
-  margin-bottom: .3rem;
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
+.hero h1 .accent{
+  color:var(--y);
+  display:inline-block;
+  position:relative;
 }
-
-/* Subheadline */
-.hero-sub {
-  color: rgba(255,255,255,0.62);
-  font-size: .95rem;
-  line-height: 1.8;
-  max-width: 480px;
-  margin-bottom: 2.2rem;
-  font-weight: 400;
-  animation: fadeSlideUp .7s ease .2s both;
+.hero h1 .accent::after{
+  content:'';
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-6px;
+  height:3px;
+  background:var(--y);
+  border-radius:2px;
+  transform:scaleX(0);
+  transform-origin:left;
+  animation:underlineGrow 1s ease 1s forwards;
 }
-
-/* CTA buttons */
-.btns {
-  display: flex;
-  gap: .9rem;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-  animation: fadeSlideUp .7s ease .3s both;
-}
-.btn-p {
-  background: var(--y);
-  color: var(--b);
-  padding: 13px 26px;
-  border-radius: 4px;
-  font-weight: 800;
-  font-size: .88rem;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  transition: .2s;
-  border: none;
-  cursor: pointer;
-  letter-spacing: .3px;
-  font-family: 'Inter', sans-serif;
-}
-.btn-p:hover { background: var(--yl); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,184,0,.35) }
-.btn-s {
-  background: transparent;
-  color: var(--w);
-  padding: 13px 26px;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: .88rem;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  border: 1.5px solid rgba(255,255,255,.22);
-  transition: .2s;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-}
-.btn-s:hover { border-color: var(--y); color: var(--y) }
-
-/* KPI grid */
-.hero-kpis {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: .9rem;
-  animation: fadeSlideUp .7s ease .4s both;
-}
-.kpi {
-  border-left: 3px solid var(--y);
-  padding-left: 1rem;
-  position: relative;
-}
-.kpi::before {
-  content: '';
-  position: absolute;
-  left: -3px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, var(--y), var(--yd));
-  border-radius: 2px;
-}
-.kpi-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--y);
-  line-height: 1;
-  letter-spacing: -0.5px;
-}
-.kpi-lbl {
-  font-size: .65rem;
-  color: rgba(255,255,255,.45);
-  margin-top: 5px;
-  line-height: 1.4;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+@keyframes underlineGrow{
+  to{transform:scaleX(1)}
 }
 
-/* Right col — visual block */
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  animation: fadeSlideUp .8s ease .2s both;
+/* Subtítulo */
+.hero-sub{
+  color:rgba(255,255,255,0.82);
+  font-size:1.05rem;
+  line-height:1.75;
+  max-width:620px;
+  margin-bottom:2.8rem;
+  font-weight:400;
+  text-shadow:0 1px 12px rgba(0,0,0,.3);
+  animation:fadeSlideUp .8s ease .25s both;
+}
+.hero-sub strong{
+  color:var(--w);
+  font-weight:600;
 }
 
-.hero-img-main {
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(245,184,0,.12);
-  position: relative;
+/* Botones CTA */
+.btns{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-bottom:3.5rem;
+  animation:fadeSlideUp .8s ease .4s both;
 }
-.hero-img-main::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  border: 1px solid rgba(245,184,0,.15);
-  pointer-events: none;
+.btn-p{
+  background:var(--y);
+  color:var(--b);
+  padding:15px 30px;
+  border-radius:6px;
+  font-weight:800;
+  font-size:.92rem;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  border:none;
+  cursor:pointer;
+  letter-spacing:.4px;
+  font-family:'Inter', sans-serif;
+  box-shadow:0 4px 20px rgba(245,184,0,.3);
+  position:relative;
+  overflow:hidden;
 }
-.hero-img-main img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+.btn-p::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+  transition:left .6s;
+}
+.btn-p:hover{
+  background:var(--yl);
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(245,184,0,.5);
+}
+.btn-p:hover::before{left:100%}
+
+.btn-s{
+  background:rgba(255,255,255,.05);
+  color:var(--w);
+  padding:15px 30px;
+  border-radius:6px;
+  font-weight:600;
+  font-size:.92rem;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  border:1.5px solid rgba(255,255,255,.28);
+  transition:all .3s ease;
+  cursor:pointer;
+  font-family:'Inter', sans-serif;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.btn-s:hover{
+  border-color:var(--y);
+  color:var(--y);
+  background:rgba(245,184,0,.08);
+  transform:translateY(-3px);
 }
 
-/* "Certified" stamp on image */
-.hero-cert {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background: rgba(12,28,51,.92);
-  border: 1px solid rgba(245,184,0,.4);
-  border-radius: 4px;
-  padding: .6rem .9rem;
-  text-align: center;
-  backdrop-filter: blur(8px);
+/* KPIs */
+.hero-kpis{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:2rem;
+  padding-top:2.5rem;
+  border-top:1px solid rgba(255,255,255,.12);
+  animation:fadeSlideUp .8s ease .55s both;
 }
-.hero-cert-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--y);
-  line-height: 1;
+.kpi{
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+  position:relative;
+  padding-left:1rem;
+  border-left:3px solid var(--y);
 }
-.hero-cert-lbl {
-  font-size: .56rem;
-  color: rgba(255,255,255,.5);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-top: 2px;
+.kpi-num{
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:clamp(1.7rem, 2.5vw, 2.2rem);
+  font-weight:900;
+  color:var(--y);
+  line-height:1;
+  letter-spacing:-0.5px;
 }
-
-.hero-img-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.hero-img-sm {
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0,0,0,.3);
-  position: relative;
-}
-.hero-img-sm::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  border: 1px solid rgba(245,184,0,.10);
-  pointer-events: none;
-}
-.hero-img-sm img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-
-/* Product ref chips below images */
-.hero-ref-chips {
-  display: flex;
-  gap: .5rem;
-  justify-content: center;
-}
-.ref-chip {
-  background: rgba(245,184,0,.1);
-  border: 1px solid rgba(245,184,0,.25);
-  color: var(--y);
-  font-size: .68rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 2px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.kpi-lbl{
+  font-size:.68rem;
+  color:rgba(255,255,255,.65);
+  line-height:1.4;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
 }
 
 /* Scroll cue */
-.scroll-cue {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .5rem;
-  color: rgba(255,255,255,.25);
-  font-size: .6rem;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
+.scroll-cue{
+  position:absolute;
+  bottom:2rem;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.6rem;
+  color:rgba(255,255,255,.5);
+  font-size:.62rem;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-weight:600;
+  animation:fadeSlideUp 1s ease 1s both;
 }
-.scroll-line {
-  width: 1px;
-  height: 36px;
-  background: linear-gradient(to bottom, var(--y), transparent);
-  animation: scrollLine 2s ease-in-out infinite;
+.scroll-line{
+  width:1px;
+  height:42px;
+  background:linear-gradient(to bottom, var(--y), transparent);
+  position:relative;
+  overflow:hidden;
 }
-@keyframes scrollLine {
-  0%{ opacity:0; transform:scaleY(0); transform-origin:top }
-  50%{ opacity:1 }
-  100%{ opacity:0; transform:scaleY(1); transform-origin:bottom }
+.scroll-line::after{
+  content:'';
+  position:absolute;
+  top:-100%;
+  left:0;
+  width:100%;
+  height:100%;
+  background:var(--y);
+  animation:scrollMove 2s ease-in-out infinite;
+}
+@keyframes scrollMove{
+  0%{top:-100%}
+  100%{top:100%}
 }
 
-/* Entrance animation */
-@keyframes fadeSlideUp {
-  from { opacity:0; transform:translateY(20px) }
-  to   { opacity:1; transform:translateY(0) }
+/* Animación de entrada */
+@keyframes fadeSlideUp{
+  from{opacity:0; transform:translateY(24px)}
+  to{opacity:1; transform:translateY(0)}
 }
 
 /* ═══════════════════════════════════════════
    HERO RESPONSIVE
 ═══════════════════════════════════════════ */
 @media(max-width:960px){
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 3rem 5% 4rem;
+  .hero-inner{
+    padding:4rem 5% 4rem;
   }
-  .hero-overlay {
-    background: linear-gradient(to bottom,
-      rgba(12,28,51,0.95) 0%,
-      rgba(12,28,51,0.85) 60%,
-      rgba(12,28,51,0.92) 100%
-    );
+  .hero-overlay{
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(12,28,51,0.88) 0%,
+        rgba(12,28,51,0.78) 50%,
+        rgba(12,28,51,0.92) 100%
+      );
   }
-  .hero h1 { font-size: clamp(2.4rem, 8vw, 3.4rem) }
-  .hero-right { display: none }
-  .hero-stripe { display: none }
+  .hero-overlay::before{display:none}
+  .hero-kpis{
+    grid-template-columns:repeat(2, 1fr);
+    gap:1.5rem;
+  }
+  .hero h1{font-size:clamp(2.2rem, 7vw, 3.4rem)}
 }
 @media(max-width:500px){
-  .hero-kpis { grid-template-columns: repeat(2,1fr) }
-  .hero h1 { font-size: clamp(2rem, 9vw, 2.8rem) }
+  .hero{min-height:92vh}
+  .hero-inner{padding:3rem 5% 3.5rem}
+  .hero h1{font-size:clamp(2rem, 9vw, 2.6rem)}
+  .hero h1 .thin{font-size:.72rem; letter-spacing:3px}
+  .hero-sub{font-size:.95rem}
+  .btns{gap:.7rem; margin-bottom:2.5rem}
+  .btn-p, .btn-s{padding:13px 22px; font-size:.85rem; flex:1; justify-content:center}
+  .hero-kpis{gap:1.2rem; padding-top:2rem}
+  .kpi-num{font-size:1.5rem}
+  .kpi-lbl{font-size:.6rem}
+  .scroll-cue{display:none}
 }
 
 /* STRIP */
@@ -641,22 +606,17 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero" aria-label="Sección principal PlateGuard">
 
-  <!-- Background image -->
+  <!-- Imagen de fondo -->
   <div class="hero-bg" aria-hidden="true">
     <img src="hero.jpg" alt="Excavadora operando junto a infraestructura subterránea protegida por PlateGuard"/>
   </div>
 
-  <!-- Gradient overlay -->
+  <!-- Overlay gradiente -->
   <div class="hero-overlay" aria-hidden="true"></div>
 
-  <!-- Decorative diagonal stripe -->
-  <div class="hero-stripe" aria-hidden="true"></div>
-
-  <!-- Main content grid -->
+  <!-- Contenido principal -->
   <div class="hero-inner">
-
-    <!-- LEFT: Copy -->
-    <div class="hero-left">
+    <div class="hero-content">
 
       <div class="h-badge">
         <span class="h-badge-dot" aria-hidden="true"></span>
@@ -665,12 +625,13 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
       <h1>
         <span class="thin">Sistema PlateGuard™</span>
-        Protección mecánica para infraestructura
+        Protección mecánica<br/>
+        para infraestructura<br/>
         <span class="accent">subterránea</span>
       </h1>
 
       <p class="hero-sub">
-        Cuando una excavadora impacta donde no debe, ningún procedimiento llega a tiempo.
+        Cuando una excavadora impacta donde no debe, <strong>ningún procedimiento llega a tiempo</strong>.
         PlateGuard™ es la barrera mecánica instalada entre el cucharón y su tubería, cable
         o fibra óptica — operando de forma pasiva, permanente y sin mantenimiento.
       </p>
@@ -683,54 +644,24 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
       <div class="hero-kpis" role="list" aria-label="Indicadores clave del sistema">
         <div class="kpi" role="listitem">
           <div class="kpi-num">32T</div>
-          <div class="kpi-lbl">Impacto certificado</div>
+          <div class="kpi-lbl">Impacto<br/>certificado</div>
         </div>
         <div class="kpi" role="listitem">
           <div class="kpi-num">HDPE</div>
-          <div class="kpi-lbl">Alta densidad industrial</div>
+          <div class="kpi-lbl">Alta densidad<br/>industrial</div>
         </div>
         <div class="kpi" role="listitem">
-          <div class="kpi-num">PG·1·2·3</div>
-          <div class="kpi-lbl">3 referencias modulares</div>
+          <div class="kpi-num">3</div>
+          <div class="kpi-lbl">Referencias<br/>modulares</div>
         </div>
         <div class="kpi" role="listitem">
           <div class="kpi-num">0</div>
-          <div class="kpi-lbl">Mantenimiento requerido</div>
+          <div class="kpi-lbl">Mantenimiento<br/>requerido</div>
         </div>
       </div>
 
-    </div><!-- /hero-left -->
-
-    <!-- RIGHT: Product visuals -->
-    <div class="hero-right" aria-hidden="true">
-
-      <div class="hero-img-main">
-        <img src="pg3-real.jpg" alt="Barrera PlateGuard PG-3 instalada en zanja"/>
-        <div class="hero-cert">
-          <div class="hero-cert-num">32T</div>
-          <div class="hero-cert-lbl">Certificado</div>
-        </div>
-      </div>
-
-      <div class="hero-img-row">
-        <div class="hero-img-sm">
-          <img src="pg1-real.jpg" alt="PlateGuard PG-1"/>
-        </div>
-        <div class="hero-img-sm">
-          <img src="pines.jpg" alt="Pines de sujeción PlateGuard"/>
-        </div>
-      </div>
-
-      <div class="hero-ref-chips">
-        <span class="ref-chip">PG-1</span>
-        <span class="ref-chip">PG-2</span>
-        <span class="ref-chip">PG-3</span>
-        <span class="ref-chip">Pines</span>
-      </div>
-
-    </div><!-- /hero-right -->
-
-  </div><!-- /hero-inner -->
+    </div>
+  </div>
 
   <div class="scroll-cue" aria-hidden="true">
     <div class="scroll-line"></div>

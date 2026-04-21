@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>PlateGuard™ | Protección mecánica para infraestructura subterránea</title>
 <meta name="description" content="PlateGuard™ — Barreras Mecánicas de Protección en HDPE. Protección pasiva, permanente y sin mantenimiento contra impactos de excavadoras de hasta 32 toneladas. PG-1, PG-2, PG-3."/>
-<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-<link rel="shortcut icon" href="favicon.svg"/>
-<link rel="apple-touch-icon" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -64,8 +61,9 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center center;
   display: block;
+  filter: saturate(1.1) contrast(1.05);
 }
 
 /* Multi-layer gradient overlay for depth & legibility */
@@ -73,19 +71,19 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Left-heavy gradient so text area is dark, right side lets image breathe */
+  /* Left-heavy gradient so text area is legible, right side lets image breathe */
   background:
     linear-gradient(to right,
-      rgba(12,28,51,0.97) 0%,
-      rgba(12,28,51,0.88) 42%,
-      rgba(12,28,51,0.55) 68%,
-      rgba(12,28,51,0.30) 100%
+      rgba(12,28,51,0.88) 0%,
+      rgba(12,28,51,0.72) 38%,
+      rgba(12,28,51,0.38) 65%,
+      rgba(12,28,51,0.18) 100%
     ),
     linear-gradient(to bottom,
-      rgba(12,28,51,0.55) 0%,
+      rgba(12,28,51,0.35) 0%,
       transparent 30%,
       transparent 70%,
-      rgba(12,28,51,0.75) 100%
+      rgba(12,28,51,0.65) 100%
     );
 }
 
@@ -120,8 +118,7 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   padding: 5rem 5%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: minmax(0, 620px);
   align-items: center;
 }
 
@@ -283,107 +280,6 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
   letter-spacing: 1px;
 }
 
-/* Right col — visual block */
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  animation: fadeSlideUp .8s ease .2s both;
-}
-
-.hero-img-main {
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(245,184,0,.12);
-  position: relative;
-}
-.hero-img-main::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  border: 1px solid rgba(245,184,0,.15);
-  pointer-events: none;
-}
-.hero-img-main img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-}
-
-/* "Certified" stamp on image */
-.hero-cert {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background: rgba(12,28,51,.92);
-  border: 1px solid rgba(245,184,0,.4);
-  border-radius: 4px;
-  padding: .6rem .9rem;
-  text-align: center;
-  backdrop-filter: blur(8px);
-}
-.hero-cert-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--y);
-  line-height: 1;
-}
-.hero-cert-lbl {
-  font-size: .56rem;
-  color: rgba(255,255,255,.5);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-top: 2px;
-}
-
-.hero-img-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.hero-img-sm {
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0,0,0,.3);
-  position: relative;
-}
-.hero-img-sm::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  border: 1px solid rgba(245,184,0,.10);
-  pointer-events: none;
-}
-.hero-img-sm img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-
-/* Product ref chips below images */
-.hero-ref-chips {
-  display: flex;
-  gap: .5rem;
-  justify-content: center;
-}
-.ref-chip {
-  background: rgba(245,184,0,.1);
-  border: 1px solid rgba(245,184,0,.25);
-  color: var(--y);
-  font-size: .68rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 2px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
 /* Scroll cue */
 .scroll-cue {
   position: absolute;
@@ -424,18 +320,16 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
 @media(max-width:960px){
   .hero-inner {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
     padding: 3rem 5% 4rem;
   }
   .hero-overlay {
     background: linear-gradient(to bottom,
-      rgba(12,28,51,0.95) 0%,
-      rgba(12,28,51,0.85) 60%,
-      rgba(12,28,51,0.92) 100%
+      rgba(12,28,51,0.85) 0%,
+      rgba(12,28,51,0.68) 55%,
+      rgba(12,28,51,0.85) 100%
     );
   }
   .hero h1 { font-size: clamp(2.4rem, 8vw, 3.4rem) }
-  .hero-right { display: none }
   .hero-stripe { display: none }
 }
 @media(max-width:500px){
@@ -646,7 +540,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
   <!-- Background image -->
   <div class="hero-bg" aria-hidden="true">
-    <img src="hero.jpg" alt="Excavadora operando junto a infraestructura subterránea protegida por PlateGuard"/>
+    <img src="hero..jpg" alt="Excavadora operando junto a infraestructura subterránea protegida por PlateGuard"/>
   </div>
 
   <!-- Gradient overlay -->
@@ -663,7 +557,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
       <div class="h-badge">
         <span class="h-badge-dot" aria-hidden="true"></span>
-        Protección pasiva · Sin mantenimiento · HDPE certificado
+        Sectores: Oil&Gas · Energía · Minería
       </div>
 
       <h1>
@@ -704,35 +598,6 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
     </div><!-- /hero-left -->
 
-    <!-- RIGHT: Product visuals -->
-    <div class="hero-right" aria-hidden="true">
-
-      <div class="hero-img-main">
-        <img src="pg3-real.jpg" alt="Barrera PlateGuard PG-3 instalada en zanja"/>
-        <div class="hero-cert">
-          <div class="hero-cert-num">32T</div>
-          <div class="hero-cert-lbl">Certificado</div>
-        </div>
-      </div>
-
-      <div class="hero-img-row">
-        <div class="hero-img-sm">
-          <img src="pg1-real.jpg" alt="PlateGuard PG-1"/>
-        </div>
-        <div class="hero-img-sm">
-          <img src="pines.jpg" alt="Pines de sujeción PlateGuard"/>
-        </div>
-      </div>
-
-      <div class="hero-ref-chips">
-        <span class="ref-chip">PG-1</span>
-        <span class="ref-chip">PG-2</span>
-        <span class="ref-chip">PG-3</span>
-        <span class="ref-chip">Pines</span>
-      </div>
-
-    </div><!-- /hero-right -->
-
   </div><!-- /hero-inner -->
 
   <div class="scroll-cue" aria-hidden="true">
@@ -749,7 +614,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
     <div><div class="strip-n">3</div><div class="strip-l">Referencias HDPE</div></div>
     <div><div class="strip-n">32T</div><div class="strip-l">Resistencia certificada</div></div>
     <div><div class="strip-n">Gas·Telecom·Eléctrico</div><div class="strip-l">Sectores industriales</div></div>
-    <div><div class="strip-n">Global</div><div class="strip-l">Alcance internacional</div></div>
+    <div><div class="strip-n">HDPE</div><div class="strip-l">Material de alta densidad</div></div>
   </div>
 </div>
 
@@ -757,7 +622,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <section>
   <div class="sec-in">
     <div class="tag">El Problema</div>
-    <h2 style="max-width:580px">Los procedimientos solos no pueden cerrar la brecha física.</h2>
+    <h2 style="max-width:640px">Proteger la infraestructura enterrada: el reto del último metro de suelo.</h2>
     <div class="quote-blk">"En el instante del impacto, la única defensa que queda es <strong>el tiempo de reacción humano</strong>. PlateGuard™ convierte ese instante en una barrera mecánica tangible."</div>
     <div class="prob-grid">
       <div class="prob-card"><div class="prob-ico">👁️</div><div><h4>Las señalizaciones desaparecen</h4><p>Al retirar las primeras capas de suelo, las marcas de pintura y cintas dejan de ser visibles. El operador avanza desde la memoria.</p></div></div>
@@ -772,7 +637,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <section class="sec-dark">
   <div class="sec-in">
     <div class="tag">Cómo Funciona</div>
-    <h2>Instalar. Rellenar. Proteger. Sin activación.</h2>
+    <h2>Instalar. Rellenar. Proteger.</h2>
     <p style="color:rgba(255,255,255,.5);margin-top:.6rem;font-size:.86rem">Sin electricidad, sensores ni mantenimiento. Opera por presencia física permanente.</p>
     <div class="steps-row">
       <div class="step"><div class="step-n">1</div><h4>Tubería instalada</h4><p>Activo enterrado a profundidad normativa.</p></div>
@@ -792,7 +657,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
       <div class="hiw-txt">
         <h3>Principio: Sacrificio controlado</h3>
         <p>Al recibir el impacto, la Barrera PlateGuard™ absorbe y redistribuye la energía antes de que llegue al activo. La barrera puede fracturarse — el activo permanece intacto. Un elemento sacrificial reemplazable es infinitamente preferible a una ruptura de gasoducto.</p>
-        <div class="hiw-impact"><img src="hero.jpg" alt="Impacto excavadora sobre PlateGuard"/></div>
+        <div class="hiw-impact"><img src="hero..jpg" alt="Impacto excavadora sobre PlateGuard"/></div>
       </div>
     </div>
   </div>
@@ -810,7 +675,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div style="padding:1.2rem">
           <div style="background:var(--y);color:var(--b);font-size:.65rem;font-weight:900;padding:3px 10px;border-radius:50px;display:inline-block;margin-bottom:.6rem;letter-spacing:1px">REFERENCIA</div>
           <h3 style="font-size:1.2rem;font-weight:900;color:var(--b);margin-bottom:.4rem">PG-1</h3>
-          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera estrecha — ideal para zanjas angostas y tramos de fibra óptica o cables individuales.</p>
+          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera amplia — máxima cobertura lateral para zanjas anchas e infraestructura de alta densidad.</p>
           <div style="margin-top:1rem;color:var(--y);font-size:.8rem;font-weight:700">Ver especificaciones →</div>
         </div>
       </div>
@@ -828,7 +693,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div style="padding:1.2rem">
           <div style="background:var(--y);color:var(--b);font-size:.65rem;font-weight:900;padding:3px 10px;border-radius:50px;display:inline-block;margin-bottom:.6rem;letter-spacing:1px">REFERENCIA</div>
           <h3 style="font-size:1.2rem;font-weight:900;color:var(--b);margin-bottom:.4rem">PG-3</h3>
-          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera amplia — máxima cobertura lateral para zanjas anchas e infraestructura de alta densidad.</p>
+          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera estrecha — ideal para zanjas angostas y tramos de fibra óptica o cables individuales.</p>
           <div style="margin-top:1rem;color:var(--y);font-size:.8rem;font-weight:700">Ver especificaciones →</div>
         </div>
       </div>
@@ -840,7 +705,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <section>
   <div class="sec-in">
     <div class="tag">Sectores de Aplicación</div>
-    <h2>Construido para infraestructura crítica.</h2>
+    <h2>Diseñado para protección de infraestructura subterránea.</h2>
     <div class="sol-grid">
       <div class="sol-card" onclick="go('soluciones')">
         <div class="sol-ico">🔥</div>
@@ -878,9 +743,9 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
 <!-- CTA -->
 <div class="cta-ban">
-  <div class="tag" style="color:var(--bm)">¿Tiene una brecha física en su estrategia de protección?</div>
-  <h2>La respuesta física que los procedimientos no pueden dar.</h2>
-  <p>Operadores de gas, telecomunicaciones e infraestructura eléctrica en todo el mundo ya protegen sus activos con PlateGuard™.</p>
+  <div class="tag" style="color:var(--bm)">Protección de Infraestructura Subterránea</div>
+  <h2>Protección mecánica para cables eléctricos, fibra óptica y tuberías de gas.</h2>
+  <p>Barrera física instalada sobre el activo durante el relleno — previene daños por excavación de terceros en redes de gas, telecomunicaciones e infraestructura eléctrica.</p>
   <div class="cta-row">
     <button class="btn-dk" onclick="go('contacto')">✉ Contáctenos</button>
     <button class="btn-out" onclick="go('productos')">Ver productos →</button>
@@ -909,15 +774,15 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="prod-layout">
           <div><div class="prod-img-wrap"><img src="pg1-real.jpg" alt="PlateGuard PG-1"/></div></div>
           <div class="prod-info">
-            <div class="prod-badge">PG-1 — Barrera Estrecha</div>
+            <div class="prod-badge">PG-1 — Barrera Amplia</div>
             <h2>PlateGuard™ PG-1</h2>
-            <p>La barrera de menor ancho del sistema PlateGuard™. Diseñada para zanjas angostas donde se instalan ductos individuales, cables de telecomunicaciones o fibra óptica. Su perfil compacto permite una instalación eficiente sin comprometer la resistencia mecánica certificada.</p>
+            <p>La referencia de mayor cobertura lateral del sistema PlateGuard™. Diseñada para zanjas anchas con múltiples ductos, redes de alta densidad o proyectos que requieren la máxima cobertura transversal. Una sola barrera PG-1 puede cubrir el ancho completo de zanjas de gran formato.</p>
             <div class="prod-specs">
               <h4>Especificaciones Técnicas</h4>
               <table class="spec-table">
                 <tr><td>Material</td><td>HDPE alta densidad</td></tr>
                 <tr><td>Resistencia al impacto</td><td>32 toneladas certificado</td></tr>
-                <tr><td>Formato</td><td>Barrera estrecha / elongada</td></tr>
+                <tr><td>Formato</td><td>Barrera de gran formato</td></tr>
                 <tr><td>Sistema de ensamblaje</td><td>Macho/hembra sin herramientas</td></tr>
                 <tr><td>Color estándar</td><td>Amarillo seguridad</td></tr>
                 <tr><td>Compatibilidad</td><td>PG-1 · PG-2 · PG-3</td></tr>
@@ -927,10 +792,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
             <div class="prod-apps">
               <h4>Aplicaciones recomendadas</h4>
               <ul class="app-list">
-                <li>Zanjas angostas para fibra óptica y cables de telecomunicaciones</li>
-                <li>Ductos individuales de distribución de gas en zonas urbanas</li>
-                <li>Tramos con espacio lateral reducido o instalaciones existentes adyacentes</li>
-                <li>Proyectos de expansión de redes donde el ancho de zanja es limitado</li>
+                <li>Zanjas de gran formato con múltiples ductos paralelos</li>
+                <li>Redes de alta densidad en corredores urbanos principales</li>
+                <li>Gasoductos de transmisión con alta cobertura requerida</li>
+                <li>Proyectos donde se requiere el mínimo número de módulos por metro lineal</li>
               </ul>
             </div>
           </div>
@@ -973,15 +838,15 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="prod-layout">
           <div><div class="prod-img-wrap"><img src="pg3-real.jpg" alt="PlateGuard PG-3"/></div></div>
           <div class="prod-info">
-            <div class="prod-badge">PG-3 — Barrera Amplia</div>
+            <div class="prod-badge">PG-3 — Barrera Estrecha</div>
             <h2>PlateGuard™ PG-3</h2>
-            <p>La referencia de mayor cobertura lateral del sistema PlateGuard™. Diseñada para zanjas anchas con múltiples ductos, redes de alta densidad o proyectos que requieren la máxima cobertura transversal. Una sola barrera PG-3 puede cubrir el ancho completo de zanjas de gran formato.</p>
+            <p>La barrera de menor ancho del sistema PlateGuard™. Diseñada para zanjas angostas donde se instalan ductos individuales, cables de telecomunicaciones o fibra óptica. Su perfil compacto permite una instalación eficiente sin comprometer la resistencia mecánica certificada.</p>
             <div class="prod-specs">
               <h4>Especificaciones Técnicas</h4>
               <table class="spec-table">
                 <tr><td>Material</td><td>HDPE alta densidad</td></tr>
                 <tr><td>Resistencia al impacto</td><td>32 toneladas certificado</td></tr>
-                <tr><td>Formato</td><td>Barrera cuadrada de gran formato</td></tr>
+                <tr><td>Formato</td><td>Barrera estrecha / elongada</td></tr>
                 <tr><td>Sistema de ensamblaje</td><td>Macho/hembra sin herramientas</td></tr>
                 <tr><td>Color estándar</td><td>Amarillo seguridad</td></tr>
                 <tr><td>Compatibilidad</td><td>PG-1 · PG-2 · PG-3</td></tr>
@@ -991,10 +856,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
             <div class="prod-apps">
               <h4>Aplicaciones recomendadas</h4>
               <ul class="app-list">
-                <li>Zanjas de gran formato con múltiples ductos paralelos</li>
-                <li>Redes de alta densidad en corredores urbanos principales</li>
-                <li>Gasoductos de transmisión con alta cobertura requerida</li>
-                <li>Proyectos donde se requiere el mínimo número de módulos por metro lineal</li>
+                <li>Zanjas angostas para fibra óptica y cables de telecomunicaciones</li>
+                <li>Ductos individuales de distribución de gas en zonas urbanas</li>
+                <li>Tramos con espacio lateral reducido o instalaciones existentes adyacentes</li>
+                <li>Proyectos de expansión de redes donde el ancho de zanja es limitado</li>
               </ul>
             </div>
           </div>
@@ -1225,7 +1090,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="logo-badge">PG</div>
         <div class="logo-name">Plate<em>Guard</em>™</div>
       </a>
-      <p>Barreras Mecánicas de Protección HDPE para infraestructura subterránea crítica. Alcance global.</p>
+      <p>Barreras Mecánicas de Protección HDPE para infraestructura subterránea crítica — gas, telecomunicaciones, energía.</p>
     </div>
     <div class="ft-col"><h4>Navegación</h4><ul>
       <li><a onclick="go('home')">Inicio</a></li>
@@ -1248,7 +1113,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
   </div>
   <div class="ft-bot">
     <span>© 2025 <span>PlateGuard™</span>. Todos los derechos reservados.</span>
-    <span>Infraestructura subterránea protegida — worldwide</span>
+    <span>Infraestructura subterránea protegida — gas · telecom · eléctrica</span>
   </div>
 </footer>
 

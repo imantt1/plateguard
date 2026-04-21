@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>PlateGuard™ | Placas de protección mecánica</title>
-<meta name="description" content="PlateGuard™ — Barreras Mecánicas de Protección en HDPE, protección contra impactos de excavadoras de hasta 32 toneladas. PG-1, PG-2, PG-3."/>
+<title>PlateGuard™ | Protección mecánica para infraestructura subterránea</title>
+<meta name="description" content="PlateGuard™ — Barreras Mecánicas de Protección en HDPE. Protección pasiva, permanente y sin mantenimiento contra impactos de excavadoras de hasta 32 toneladas. PG-1, PG-2, PG-3."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --y:#F5B800;--yd:#D9A200;--yl:#FFD03A;
@@ -38,38 +38,412 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
 /* PAGES */
 .page{display:none}.page.active{display:block}
 
-/* HERO */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:66px;background:var(--b)}
-.hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.35}
-.hero-gradient{position:absolute;inset:0;background:linear-gradient(105deg,rgba(12,28,51,.97) 0%,rgba(12,28,51,.85) 50%,rgba(12,28,51,.5) 100%)}
-.hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:4rem 5%;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.h-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(245,184,0,.12);border:1px solid rgba(245,184,0,.3);color:var(--y);padding:6px 14px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.4rem}
-.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.05;color:var(--w);letter-spacing:-1.5px}
-.hero h1 span{color:var(--y)}
-.hero-sub{color:rgba(255,255,255,.65);font-size:.98rem;line-height:1.8;max-width:500px;margin:1.4rem 0 2rem}
-.btns{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-p{background:var(--y);color:var(--b);padding:13px 26px;border-radius:8px;font-weight:800;font-size:.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:.2s;border:none;cursor:pointer;letter-spacing:.3px}
-.btn-p:hover{background:var(--yl);transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,184,0,.3)}
-.btn-s{background:transparent;color:var(--w);padding:13px 26px;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid rgba(255,255,255,.25);transition:.2s;cursor:pointer}
-.btn-s:hover{border-color:var(--y);color:var(--y)}
-.hero-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem}
-.kpi{border-left:3px solid var(--y);padding-left:.9rem}
-.kpi-num{font-size:1.8rem;font-weight:900;color:var(--y);line-height:1}
-.kpi-lbl{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:4px;line-height:1.4;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
-.hero-right{display:flex;flex-direction:column;gap:1rem}
-.hero-img-main{border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5)}
-.hero-img-main img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
-.hero-img-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.hero-img-sm{border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.3)}
-.hero-img-sm img{width:100%;display:block;aspect-ratio:1;object-fit:cover}
-.scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(255,255,255,.3);font-size:.65rem;text-transform:uppercase;letter-spacing:2px}
-.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--y),transparent)}
+/* ═══════════════════════════════════════════
+   HERO — REDESIGNED
+═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 66px;
+  background: var(--b);
+}
+
+/* Background image layer */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+
+/* Multi-layer gradient overlay for depth & legibility */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* Left-heavy gradient so text area is dark, right side lets image breathe */
+  background:
+    linear-gradient(to right,
+      rgba(12,28,51,0.97) 0%,
+      rgba(12,28,51,0.88) 42%,
+      rgba(12,28,51,0.55) 68%,
+      rgba(12,28,51,0.30) 100%
+    ),
+    linear-gradient(to bottom,
+      rgba(12,28,51,0.55) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(12,28,51,0.75) 100%
+    );
+}
+
+/* Subtle noise texture for depth */
+.hero-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* Accent diagonal stripe — industrial feel */
+.hero-stripe {
+  position: absolute;
+  top: 0;
+  right: 30%;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, var(--y) 25%, var(--y) 75%, transparent 100%);
+  opacity: 0.18;
+  z-index: 2;
+}
+
+/* Inner content */
+.hero-inner {
+  position: relative;
+  z-index: 3;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem 5%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left col — main content */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pre-title badge */
+.h-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,184,0,0.10);
+  border: 1px solid rgba(245,184,0,0.35);
+  color: var(--y);
+  padding: 7px 16px;
+  border-radius: 3px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+  animation: fadeSlideUp .6s ease both;
+}
+.h-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--y);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100%{ opacity:1; transform:scale(1) }
+  50%{ opacity:.5; transform:scale(1.4) }
+}
+
+/* H1 */
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  font-weight: 900;
+  line-height: 1.0;
+  color: var(--w);
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  animation: fadeSlideUp .7s ease .1s both;
+}
+.hero h1 .accent {
+  color: var(--y);
+  display: block;
+}
+.hero h1 .thin {
+  font-weight: 600;
+  opacity: 0.75;
+  font-size: 75%;
+  letter-spacing: 3px;
+  display: block;
+  margin-bottom: .3rem;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Subheadline */
+.hero-sub {
+  color: rgba(255,255,255,0.62);
+  font-size: .95rem;
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 2.2rem;
+  font-weight: 400;
+  animation: fadeSlideUp .7s ease .2s both;
+}
+
+/* CTA buttons */
+.btns {
+  display: flex;
+  gap: .9rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  animation: fadeSlideUp .7s ease .3s both;
+}
+.btn-p {
+  background: var(--y);
+  color: var(--b);
+  padding: 13px 26px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: .88rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: .2s;
+  border: none;
+  cursor: pointer;
+  letter-spacing: .3px;
+  font-family: 'Inter', sans-serif;
+}
+.btn-p:hover { background: var(--yl); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,184,0,.35) }
+.btn-s {
+  background: transparent;
+  color: var(--w);
+  padding: 13px 26px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: .88rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1.5px solid rgba(255,255,255,.22);
+  transition: .2s;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+.btn-s:hover { border-color: var(--y); color: var(--y) }
+
+/* KPI grid */
+.hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .9rem;
+  animation: fadeSlideUp .7s ease .4s both;
+}
+.kpi {
+  border-left: 3px solid var(--y);
+  padding-left: 1rem;
+  position: relative;
+}
+.kpi::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--y), var(--yd));
+  border-radius: 2px;
+}
+.kpi-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--y);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+.kpi-lbl {
+  font-size: .65rem;
+  color: rgba(255,255,255,.45);
+  margin-top: 5px;
+  line-height: 1.4;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Right col — visual block */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeSlideUp .8s ease .2s both;
+}
+
+.hero-img-main {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(245,184,0,.12);
+  position: relative;
+}
+.hero-img-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(245,184,0,.15);
+  pointer-events: none;
+}
+.hero-img-main img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+/* "Certified" stamp on image */
+.hero-cert {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(12,28,51,.92);
+  border: 1px solid rgba(245,184,0,.4);
+  border-radius: 4px;
+  padding: .6rem .9rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.hero-cert-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--y);
+  line-height: 1;
+}
+.hero-cert-lbl {
+  font-size: .56rem;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+.hero-img-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.hero-img-sm {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,.3);
+  position: relative;
+}
+.hero-img-sm::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(245,184,0,.10);
+  pointer-events: none;
+}
+.hero-img-sm img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* Product ref chips below images */
+.hero-ref-chips {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+}
+.ref-chip {
+  background: rgba(245,184,0,.1);
+  border: 1px solid rgba(245,184,0,.25);
+  color: var(--y);
+  font-size: .68rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 2px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  color: rgba(255,255,255,.25);
+  font-size: .6rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+.scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, var(--y), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%{ opacity:0; transform:scaleY(0); transform-origin:top }
+  50%{ opacity:1 }
+  100%{ opacity:0; transform:scaleY(1); transform-origin:bottom }
+}
+
+/* Entrance animation */
+@keyframes fadeSlideUp {
+  from { opacity:0; transform:translateY(20px) }
+  to   { opacity:1; transform:translateY(0) }
+}
+
+/* ═══════════════════════════════════════════
+   HERO RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:960px){
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 3rem 5% 4rem;
+  }
+  .hero-overlay {
+    background: linear-gradient(to bottom,
+      rgba(12,28,51,0.95) 0%,
+      rgba(12,28,51,0.85) 60%,
+      rgba(12,28,51,0.92) 100%
+    );
+  }
+  .hero h1 { font-size: clamp(2.4rem, 8vw, 3.4rem) }
+  .hero-right { display: none }
+  .hero-stripe { display: none }
+}
+@media(max-width:500px){
+  .hero-kpis { grid-template-columns: repeat(2,1fr) }
+  .hero h1 { font-size: clamp(2rem, 9vw, 2.8rem) }
+}
 
 /* STRIP */
 .strip{background:var(--y);padding:2rem 5%}
 .strip-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
-.strip-n{font-size:1.8rem;font-weight:900;color:var(--b)}
+.strip-n{font-size:1.8rem;font-weight:900;color:var(--b);font-family:'Barlow Condensed',sans-serif}
 .strip-l{font-size:.75rem;font-weight:700;color:rgba(12,28,51,.7);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
 
 /* SECTIONS */
@@ -111,7 +485,7 @@ h2{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;line-height:1.15;color:var
 .hiw-impact{margin-top:1.2rem;border-radius:12px;overflow:hidden}
 .hiw-impact img{width:100%;object-fit:cover;display:block;max-height:240px}
 
-/* ── PRODUCTOS ── */
+/* PRODUCTOS */
 .prod-hero{background:linear-gradient(135deg,var(--b),var(--bm));padding:110px 5% 60px;text-align:center}
 .prod-hero h1{color:var(--w);font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:.8rem;letter-spacing:-1px}
 .prod-hero p{color:rgba(255,255,255,.6);max-width:560px;margin:0 auto;line-height:1.7;font-size:.9rem}
@@ -214,10 +588,9 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 .ft-bot{max-width:1200px;margin:1.5rem auto 0;display:flex;justify-content:space-between;align-items:center;font-size:.73rem;color:rgba(255,255,255,.28);flex-wrap:wrap;gap:.5rem}
 .ft-bot span{color:var(--y)}
 
-/* RESPONSIVE */
+/* RESPONSIVE — shared */
 @media(max-width:960px){
-  .hero-inner,.prod-layout,.hiw-bottom,.pines-grid{grid-template-columns:1fr}
-  .hero-right{display:none}
+  .prod-layout,.hiw-bottom,.pines-grid{grid-template-columns:1fr}
   .strip-in,.prob-grid,.sol-grid,.attr-grid,.res-grid,.ft-in{grid-template-columns:1fr}
   .steps-row{grid-template-columns:1fr;gap:1.2rem}
   .steps-row::before{display:none}
@@ -225,7 +598,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
   .nav-links,.lang-sw{display:none}
   .hbg{display:flex}
 }
-@media(max-width:500px){section{padding:56px 5%}.strip-in{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){
+  section{padding:56px 5%}
+  .strip-in{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
@@ -262,35 +638,107 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <!-- ══ HOME ══ -->
 <div id="page-home" class="page active">
 
-<div class="hero">
-  <div class="hero-bg"><img src="close.jpg" alt="PlateGuard en acción"/></div>
-  <div class="hero-gradient"></div>
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" aria-label="Sección principal PlateGuard">
+
+  <!-- Background image -->
+  <div class="hero-bg" aria-hidden="true">
+    <img src="hero.jpg" alt="Excavadora operando junto a infraestructura subterránea protegida por PlateGuard"/>
+  </div>
+
+  <!-- Gradient overlay -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Decorative diagonal stripe -->
+  <div class="hero-stripe" aria-hidden="true"></div>
+
+  <!-- Main content grid -->
   <div class="hero-inner">
-    <div>
-      <div class="h-badge">🛡 Protección de infraestructura enterrada</div>
-      <h1>Protección física para infraestructura subterránea.</span></h1>
-      <p class="hero-sub"Cuando una excavadora de 32 toneladas impacta donde no debe, ningún procedimiento llega a tiempo. PlateGuard™ es la barrera mecánica instalada entre el cucharón y su tubería, cable o fibra óptica — operando de forma pasiva, permanente y sin mantenimiento.</p>
+
+    <!-- LEFT: Copy -->
+    <div class="hero-left">
+
+      <div class="h-badge">
+        <span class="h-badge-dot" aria-hidden="true"></span>
+        Protección pasiva · Sin mantenimiento · HDPE certificado
+      </div>
+
+      <h1>
+        <span class="thin">Sistema PlateGuard™</span>
+        Protección mecánica para infraestructura
+        <span class="accent">subterránea</span>
+      </h1>
+
+      <p class="hero-sub">
+        Cuando una excavadora impacta donde no debe, ningún procedimiento llega a tiempo.
+        PlateGuard™ es la barrera mecánica instalada entre el cucharón y su tubería, cable
+        o fibra óptica — operando de forma pasiva, permanente y sin mantenimiento.
+      </p>
+
       <div class="btns">
         <button class="btn-p" onclick="go('productos')">Ver Productos →</button>
         <button class="btn-s" onclick="go('contacto')">Solicitar Evaluación</button>
       </div>
-      <div class="hero-kpis">
-        <div class="kpi"><div class="kpi-num">32T</div><div class="kpi-lbl">Impacto </div></div>
-        <div class="kpi"><div class="kpi-num">HDPE</div><div class="kpi-lbl">Material industrial</div></div>
-        <div class="kpi"><div class="kpi-num">PG-1·2·3</div><div class="kpi-lbl">3 referencias disponibles</div></div>
-        <div class="kpi"><div class="kpi-num">CO·BR</div><div class="kpi-lbl">Colombia y Brasil</div></div>
+
+      <div class="hero-kpis" role="list" aria-label="Indicadores clave del sistema">
+        <div class="kpi" role="listitem">
+          <div class="kpi-num">32T</div>
+          <div class="kpi-lbl">Impacto certificado</div>
+        </div>
+        <div class="kpi" role="listitem">
+          <div class="kpi-num">HDPE</div>
+          <div class="kpi-lbl">Alta densidad industrial</div>
+        </div>
+        <div class="kpi" role="listitem">
+          <div class="kpi-num">PG·1·2·3</div>
+          <div class="kpi-lbl">3 referencias modulares</div>
+        </div>
+        <div class="kpi" role="listitem">
+          <div class="kpi-num">0</div>
+          <div class="kpi-lbl">Mantenimiento requerido</div>
+        </div>
       </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-img-main"><img src="pg3-real.jpg" alt="PlateGuard PG-3"/></div>
+
+    </div><!-- /hero-left -->
+
+    <!-- RIGHT: Product visuals -->
+    <div class="hero-right" aria-hidden="true">
+
+      <div class="hero-img-main">
+        <img src="pg3-real.jpg" alt="Barrera PlateGuard PG-3 instalada en zanja"/>
+        <div class="hero-cert">
+          <div class="hero-cert-num">32T</div>
+          <div class="hero-cert-lbl">Certificado</div>
+        </div>
+      </div>
+
       <div class="hero-img-row">
-        <div class="hero-img-sm"><img src="pg1-real.jpg" alt="PlateGuard PG-1"/></div>
-        <div class="hero-img-sm"><img src="pines.jpg" alt="Pines PlateGuard"/></div>
+        <div class="hero-img-sm">
+          <img src="pg1-real.jpg" alt="PlateGuard PG-1"/>
+        </div>
+        <div class="hero-img-sm">
+          <img src="pines.jpg" alt="Pines de sujeción PlateGuard"/>
+        </div>
       </div>
-    </div>
+
+      <div class="hero-ref-chips">
+        <span class="ref-chip">PG-1</span>
+        <span class="ref-chip">PG-2</span>
+        <span class="ref-chip">PG-3</span>
+        <span class="ref-chip">Pines</span>
+      </div>
+
+    </div><!-- /hero-right -->
+
+  </div><!-- /hero-inner -->
+
+  <div class="scroll-cue" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
   </div>
-  <div class="scroll-cue"><div class="scroll-line"></div><span>scroll</span></div>
-</div>
+
+</section>
+<!-- ═══════════ /HERO ═══════════ -->
 
 <!-- STRIP -->
 <div class="strip">
@@ -298,7 +746,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
     <div><div class="strip-n">3</div><div class="strip-l">Referencias HDPE</div></div>
     <div><div class="strip-n">32T</div><div class="strip-l">Resistencia certificada</div></div>
     <div><div class="strip-n">Gas·Telecom·Eléctrico</div><div class="strip-l">Sectores industriales</div></div>
-    <div><div class="strip-n">CO·BR</div><div class="strip-l">Colombia y Brasil</div></div>
+    <div><div class="strip-n">Global</div><div class="strip-l">Alcance internacional</div></div>
   </div>
 </div>
 
@@ -429,7 +877,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <div class="cta-ban">
   <div class="tag" style="color:var(--bm)">¿Tiene una brecha física en su estrategia de protección?</div>
   <h2>La respuesta física que los procedimientos no pueden dar.</h2>
-  <p>Operadores de gas, telecomunicaciones e infraestructura eléctrica en Colombia y Brasil ya protegen sus activos con PlateGuard™.</p>
+  <p>Operadores de gas, telecomunicaciones e infraestructura eléctrica en todo el mundo ya protegen sus activos con PlateGuard™.</p>
   <div class="cta-row">
     <button class="btn-dk" onclick="go('contacto')">✉ Contáctenos</button>
     <button class="btn-out" onclick="go('productos')">Ver productos →</button>
@@ -453,13 +901,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
   </div>
   <section style="padding:4rem 5%">
     <div class="prod-body">
-
       <!-- PG-1 -->
       <div class="ppanel on" id="pp-pg1">
         <div class="prod-layout">
-          <div>
-            <div class="prod-img-wrap"><img src="pg1-real.jpg" alt="PlateGuard PG-1"/></div>
-          </div>
+          <div><div class="prod-img-wrap"><img src="pg1-real.jpg" alt="PlateGuard PG-1"/></div></div>
           <div class="prod-info">
             <div class="prod-badge">PG-1 — Barrera Estrecha</div>
             <h2>PlateGuard™ PG-1</h2>
@@ -488,13 +933,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
           </div>
         </div>
       </div>
-
       <!-- PG-2 -->
       <div class="ppanel" id="pp-pg2">
         <div class="prod-layout">
-          <div>
-            <div class="prod-img-wrap"><img src="pg2-real.jpg" alt="PlateGuard PG-2"/></div>
-          </div>
+          <div><div class="prod-img-wrap"><img src="pg2-real.jpg" alt="PlateGuard PG-2"/></div></div>
           <div class="prod-info">
             <div class="prod-badge">PG-2 — Barrera Media</div>
             <h2>PlateGuard™ PG-2</h2>
@@ -523,13 +965,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
           </div>
         </div>
       </div>
-
       <!-- PG-3 -->
       <div class="ppanel" id="pp-pg3">
         <div class="prod-layout">
-          <div>
-            <div class="prod-img-wrap"><img src="pg3-real.jpg" alt="PlateGuard PG-3"/></div>
-          </div>
+          <div><div class="prod-img-wrap"><img src="pg3-real.jpg" alt="PlateGuard PG-3"/></div></div>
           <div class="prod-info">
             <div class="prod-badge">PG-3 — Barrera Amplia</div>
             <h2>PlateGuard™ PG-3</h2>
@@ -558,7 +997,6 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
           </div>
         </div>
       </div>
-
       <!-- PINES -->
       <div class="ppanel" id="pp-pines">
         <div class="tag">Complemento del Sistema</div>
@@ -592,7 +1030,6 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
           </div>
         </div>
       </div>
-
     </div>
   </section>
 </div><!-- /page-productos -->
@@ -612,7 +1049,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
           <h3>Gas Natural y Energía</h3>
           <p>Una ruptura en gasoducto no es solo una interrupción operativa — es un evento con consecuencias legales, regulatorias y humanas. PlateGuard™ es la barrera física que separa al cucharón del tubo.</p>
           <ul class="sol-list">
-            <li>Sustento ante entes reguladores en Colombia y Brasil</li>
+            <li>Sustento ante entes reguladores internacionales</li>
             <li>Color HDPE amarillo alineado con normas de marcación de gas</li>
             <li>Fortalece posición legal en auditorías post-incidente</li>
             <li>Aplicable en expansión de redes urbanas e industriales</li>
@@ -671,15 +1108,14 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
       <div class="tag">Documentos disponibles</div>
       <h2>Descargar Documentación</h2>
       <p style="color:var(--gray);font-size:.85rem;margin:.6rem 0 2rem;line-height:1.6">Todos los documentos están orientados a evaluación técnica y regulatoria.</p>
-
       <div style="display:flex;flex-direction:column;gap:0">
         <div style="display:flex;gap:1.5rem;padding:2rem 0;border-bottom:1px solid #E8EFF7;align-items:flex-start">
           <div style="font-size:1.8rem;min-width:40px">📄</div>
           <div style="flex:1">
             <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--y);background:var(--b);display:inline-block;padding:3px 10px;border-radius:50px;margin-bottom:.7rem">White Paper</div>
-            <h3 style="font-size:1rem;font-weight:800;color:var(--b);margin-bottom:.5rem">Cerrando la Brecha del Último Metro en Colombia y Brasil</h3>
+            <h3 style="font-size:1rem;font-weight:800;color:var(--b);margin-bottom:.5rem">Cerrando la Brecha del Último Metro</h3>
             <p style="font-size:.82rem;color:#5A6A80;line-height:1.65;margin-bottom:.6rem">Analiza la brecha física en los marcos de prevención de daños y propone la protección mecánica pasiva como medida preventiva razonable ante entes reguladores.</p>
-            <div style="font-size:.77rem;color:var(--gray);margin-bottom:.9rem"><strong>Audiencia:</strong> Integridad de Activos · Gestión de Riesgo · Reguladores &nbsp;|&nbsp; <strong>Región:</strong> Colombia · Brasil</div>
+            <div style="font-size:.77rem;color:var(--gray);margin-bottom:.9rem"><strong>Audiencia:</strong> Integridad de Activos · Gestión de Riesgo · Reguladores &nbsp;|&nbsp; <strong>Región:</strong> Internacional</div>
             <button class="btn-dl" onclick="downloadDoc('whitepaper')">⬇ Descargar White Paper</button>
           </div>
         </div>
@@ -687,9 +1123,9 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
           <div style="font-size:1.8rem;min-width:40px">🗂</div>
           <div style="flex:1">
             <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--y);background:var(--b);display:inline-block;padding:3px 10px;border-radius:50px;margin-bottom:.7rem">Marco de Decisión</div>
-            <h3 style="font-size:1rem;font-weight:800;color:var(--b);margin-bottom:.5rem">Criterio de Protección Física para Activos Subterráneos — LATAM</h3>
+            <h3 style="font-size:1rem;font-weight:800;color:var(--b);margin-bottom:.5rem">Criterio de Protección Física para Activos Subterráneos</h3>
             <p style="font-size:.82rem;color:#5A6A80;line-height:1.65;margin-bottom:.6rem">Herramienta estructurada para determinar cuándo la protección mecánica está justificada, por qué es pertinente y cómo documentarla correctamente.</p>
-            <div style="font-size:.77rem;color:var(--gray);margin-bottom:.9rem"><strong>Audiencia:</strong> Ingenieros · Operadores · Propietarios de Activos &nbsp;|&nbsp; <strong>Región:</strong> América Latina</div>
+            <div style="font-size:.77rem;color:var(--gray);margin-bottom:.9rem"><strong>Audiencia:</strong> Ingenieros · Operadores · Propietarios de Activos &nbsp;|&nbsp; <strong>Región:</strong> Internacional</div>
             <button class="btn-dl" onclick="downloadDoc('framework')">⬇ Descargar Marco de Decisión</button>
           </div>
         </div>
@@ -704,7 +1140,6 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
           </div>
         </div>
       </div>
-
       <!-- FAQ -->
       <div style="margin-top:3rem">
         <div class="tag">Preguntas Frecuentes</div>
@@ -738,11 +1173,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
             <button class="faq-q" onclick="toggleFaq(this)" style="width:100%;background:none;border:none;display:flex;justify-content:space-between;align-items:center;padding:1rem 0;cursor:pointer;font-size:.92rem;font-weight:700;color:var(--b);text-align:left;gap:1rem">
               <span>¿Cuál es el valor regulatorio de instalar PlateGuard™?</span><span style="font-size:1.2rem;color:var(--y);flex-shrink:0;transition:.3s">+</span>
             </button>
-            <div style="display:none;padding:.2rem 0 1.2rem"><p style="font-size:.85rem;color:#5A6A80;line-height:1.75">Permite acreditar que se implementó una medida física preventiva razonable. Esto transforma la narrativa regulatoria de fallo procedimental a riesgo residual a pesar de la mitigación — posición sustancialmente más sólida ante reguladores en Colombia y Brasil.</p></div>
+            <div style="display:none;padding:.2rem 0 1.2rem"><p style="font-size:.85rem;color:#5A6A80;line-height:1.75">Permite acreditar que se implementó una medida física preventiva razonable. Esto transforma la narrativa regulatoria de fallo procedimental a riesgo residual a pesar de la mitigación — posición sustancialmente más sólida ante cualquier ente regulador.</p></div>
           </div>
         </div>
       </div>
-
       <div style="margin-top:2.5rem;background:var(--b);border-radius:14px;padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
         <div>
           <div style="color:var(--y);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:.4rem">¿Pregunta técnica específica?</div>
@@ -765,12 +1199,12 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="fg"><label>Nombre completo *</label><input type="text" required placeholder="Ing. Nombre Apellido"/></div>
         <div class="fg"><label>Empresa *</label><input type="text" required placeholder="Empresa S.A."/></div>
         <div class="fg"><label>Correo electrónico *</label><input type="email" required placeholder="nombre@empresa.com"/></div>
-        <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" placeholder="+57 300 000 0000"/></div>
+        <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" placeholder="+1 000 000 0000"/></div>
         <div class="fg"><label>Sector industrial *</label>
           <select required><option value="">Seleccione...</option><option>Gas Natural / Energía</option><option>Telecomunicaciones / Fibra Óptica</option><option>Infraestructura Eléctrica</option><option>Ingeniería / Contratista Civil</option><option>Otro</option></select>
         </div>
         <div class="fg"><label>País *</label>
-          <select required><option value="">—</option><option>Colombia</option><option>Brasil</option></select>
+          <input type="text" required placeholder="País de operación"/>
         </div>
         <div class="fg full"><label>Descripción del proyecto *</label><textarea required placeholder="Tipo de infraestructura, longitud estimada del tramo, profundidad de instalación y requerimientos normativos específicos..."></textarea></div>
         <button type="submit" class="btn-sub">🚀 Enviar Solicitud Técnica</button>
@@ -788,7 +1222,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="logo-badge">PG</div>
         <div class="logo-name">Plate<em>Guard</em>™</div>
       </a>
-      <p>Barreras Mecánicas de Protección HDPE para infraestructura subterránea crítica. Colombia y Brasil.</p>
+      <p>Barreras Mecánicas de Protección HDPE para infraestructura subterránea crítica. Alcance global.</p>
     </div>
     <div class="ft-col"><h4>Navegación</h4><ul>
       <li><a onclick="go('home')">Inicio</a></li>
@@ -811,7 +1245,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
   </div>
   <div class="ft-bot">
     <span>© 2025 <span>PlateGuard™</span>. Todos los derechos reservados.</span>
-    <span>Colombia · Brasil</span>
+    <span>Infraestructura subterránea protegida — worldwide</span>
   </div>
 </footer>
 
@@ -868,8 +1302,8 @@ function setLang(l){
 // DOCS
 function downloadDoc(type){
   const docs={
-    whitepaper:{title:'PlateGuard™ — White Paper',sub:'Cerrando la Brecha del Último Metro en Colombia y Brasil',tag:'WHITE PAPER TÉCNICO',content:`1. Contexto y Alcance\n\nLos daños a infraestructura subterránea causados por excavación de terceros representan uno de los riesgos operativos más frecuentes en Colombia y Brasil. Este documento analiza la brecha física que persiste incluso cuando todos los procedimientos se ejecutan correctamente, y propone la implementación de protección mecánica pasiva como medida preventiva razonable.\n\n2. El Problema: La Brecha del Último Metro\n\nLa zona de los últimos 30–100 cm de suelo sobre el activo enterrado no cuenta con ningún mecanismo de protección mecánica. Las señalizaciones desaparecen, la percepción de profundidad falla, la cinta de advertencia no opone resistencia, y el tiempo de reacción humano es insuficiente.\n\n3. La Solución: Barreras Mecánicas PlateGuard™\n\nFabricadas en HDPE de alta densidad, las Barreras PG-1, PG-2 y PG-3 se instalan sobre el activo durante el relleno estándar. Al recibir el impacto, absorben y redistribuyen las fuerzas antes de que lleguen al activo. Resistencia certificada: 32 toneladas.\n\n4. Valor Regulatorio\n\nPermite acreditar ante reguladores en Colombia y Brasil que se implementó una medida física preventiva razonable — transformando la narrativa de fallo procedimental a riesgo residual a pesar de la mitigación.\n\n5. Criterios de Aplicación\n\nZonas urbanas con alta actividad de excavación, corredores con historial de daños, cobertura insuficiente, cruces de vías activas, ductos en expansión urbana.\n\n---\n© 2025 PlateGuard™ | plateguard.net | Colombia · Brasil`},
-    framework:{title:'PlateGuard™ — Marco de Decisión',sub:'Criterio de Protección Física LATAM',tag:'MARCO DE DECISIÓN TÉCNICO',content:`1. Propósito\n\nCriterio estructurado para determinar cuándo la protección mecánica pasiva está justificada, por qué es pertinente y cómo documentarla.\n\n2. Criterios de Aplicación (A–E)\n\nA - Historial de incidentes en el tramo o adyacentes\nB - Entorno urbano/periurbano con actividad de construcción frecuente\nC - Cobertura de suelo insuficiente o variable\nD - Cruce de derechos de vía activos o zonas de expansión\nE - Exposición regulatoria con requisitos de documentación de medidas preventivas\n\n3. Criterios de Exclusión\n\nGasoductos de transmisión en zonas rurales con cobertura profunda y baja actividad. Instalaciones con cobertura >2m sin historial de excavación próxima.\n\n4. Proceso de Documentación\n\n1. Identificación GPS del tramo protegido\n2. Justificación de riesgo con evidencia de soporte\n3. Especificación técnica: modelo (PG-1/PG-2/PG-3), profundidad, configuración\n4. Registro fotográfico de la instalación\n5. Firma del ingeniero responsable\n\n5. Árbol de Decisión\n\n¿Cumple criterio A–E? → SÍ: Evalúe PlateGuard™\n  ¿Costo de incidente > costo de protección? → SÍ: Instale y documente\n→ NO: Incluya en revisión anual de riesgo residual\n\n---\n© 2025 PlateGuard™ | plateguard.net | Colombia · Brasil`},
+    whitepaper:{title:'PlateGuard™ — White Paper',sub:'Cerrando la Brecha del Último Metro',tag:'WHITE PAPER TÉCNICO',content:`1. Contexto y Alcance\n\nLos daños a infraestructura subterránea causados por excavación de terceros representan uno de los riesgos operativos más frecuentes a nivel global. Este documento analiza la brecha física que persiste incluso cuando todos los procedimientos se ejecutan correctamente, y propone la implementación de protección mecánica pasiva como medida preventiva razonable.\n\n2. El Problema: La Brecha del Último Metro\n\nLa zona de los últimos 30–100 cm de suelo sobre el activo enterrado no cuenta con ningún mecanismo de protección mecánica. Las señalizaciones desaparecen, la percepción de profundidad falla, la cinta de advertencia no opone resistencia, y el tiempo de reacción humano es insuficiente.\n\n3. La Solución: Barreras Mecánicas PlateGuard™\n\nFabricadas en HDPE de alta densidad, las Barreras PG-1, PG-2 y PG-3 se instalan sobre el activo durante el relleno estándar. Al recibir el impacto, absorben y redistribuyen las fuerzas antes de que lleguen al activo. Resistencia certificada: 32 toneladas.\n\n4. Valor Regulatorio\n\nPermite acreditar ante reguladores que se implementó una medida física preventiva razonable — transformando la narrativa de fallo procedimental a riesgo residual a pesar de la mitigación.\n\n5. Criterios de Aplicación\n\nZonas urbanas con alta actividad de excavación, corredores con historial de daños, cobertura insuficiente, cruces de vías activas, ductos en expansión urbana.\n\n---\n© 2025 PlateGuard™ | plateguard.net`},
+    framework:{title:'PlateGuard™ — Marco de Decisión',sub:'Criterio de Protección Física — Internacional',tag:'MARCO DE DECISIÓN TÉCNICO',content:`1. Propósito\n\nCriterio estructurado para determinar cuándo la protección mecánica pasiva está justificada, por qué es pertinente y cómo documentarla.\n\n2. Criterios de Aplicación (A–E)\n\nA - Historial de incidentes en el tramo o adyacentes\nB - Entorno urbano/periurbano con actividad de construcción frecuente\nC - Cobertura de suelo insuficiente o variable\nD - Cruce de derechos de vía activos o zonas de expansión\nE - Exposición regulatoria con requisitos de documentación de medidas preventivas\n\n3. Criterios de Exclusión\n\nGasoductos de transmisión en zonas rurales con cobertura profunda y baja actividad. Instalaciones con cobertura >2m sin historial de excavación próxima.\n\n4. Proceso de Documentación\n\n1. Identificación GPS del tramo protegido\n2. Justificación de riesgo con evidencia de soporte\n3. Especificación técnica: modelo (PG-1/PG-2/PG-3), profundidad, configuración\n4. Registro fotográfico de la instalación\n5. Firma del ingeniero responsable\n\n5. Árbol de Decisión\n\n¿Cumple criterio A–E? → SÍ: Evalúe PlateGuard™\n  ¿Costo de incidente > costo de protección? → SÍ: Instale y documente\n→ NO: Incluya en revisión anual de riesgo residual\n\n---\n© 2025 PlateGuard™ | plateguard.net`},
     thesis:{title:'PlateGuard™ — Tesis Técnica',sub:'Resumen del Sistema de Protección',tag:'TESIS TÉCNICA — UNA PÁGINA',content:`Alcance de Aplicación\nGasoductos, telecomunicaciones, cables eléctricos en zonas de alta actividad de excavación de terceros.\n\nEl Problema\nLos marcos de prevención dependen de procedimientos que no pueden actuar físicamente en el momento del impacto. La brecha no es de cumplimiento — es estructural.\n\nLa Solución Técnica\nBarreras PG-1, PG-2, PG-3 en HDPE. Capa de sacrificio que absorbe el impacto antes de que llegue al activo. Certificado 32T · Modular sin herramientas · Neutro eléctricamente · Sin mantenimiento.\n\nJustificación para Implementación\n1. Efectividad física: actúa en el instante del impacto\n2. Defensibilidad regulatoria: acredita medida física preventiva razonable\n3. Economía de riesgo: costo de barrera << costo de incidente\n\n---\n© 2025 PlateGuard™ | plateguard.net`}
   };
   const d=docs[type];
@@ -877,7 +1311,7 @@ function downloadDoc(type){
   const b=new Blob([txt],{type:'text/plain;charset=utf-8'});
   const u=URL.createObjectURL(b);
   const a=document.createElement('a');
-  const n={whitepaper:'PlateGuard_WhitePaper_CO_BR.txt',framework:'PlateGuard_MarcoDecision_LATAM.txt',thesis:'PlateGuard_TesisTecnica.txt'};
+  const n={whitepaper:'PlateGuard_WhitePaper_Global.txt',framework:'PlateGuard_MarcoDecision_Internacional.txt',thesis:'PlateGuard_TesisTecnica.txt'};
   a.href=u;a.download=n[type];a.click();URL.revokeObjectURL(u);
 }
 </script>

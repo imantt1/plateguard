@@ -39,370 +39,405 @@ nav{position:fixed;top:0;width:100%;background:rgba(12,28,51,.97);backdrop-filte
 .page{display:none}.page.active{display:block}
 
 /* ═══════════════════════════════════════════
-   HERO — MODERN OVERLAY DESIGN
+   HERO — REDESIGNED
 ═══════════════════════════════════════════ */
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  padding-top:66px;
-  background:var(--b);
-  isolation:isolate;
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 66px;
+  background: var(--b);
 }
 
-/* Imagen de fondo */
-.hero-bg{
-  position:absolute;
-  inset:0;
-  z-index:-2;
+/* Background image layer */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
-.hero-bg img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center center;
-  display:block;
-  transform:scale(1.05);
-  animation:heroZoom 18s ease-out forwards;
-}
-@keyframes heroZoom{
-  from{transform:scale(1.12)}
-  to{transform:scale(1.0)}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
 }
 
-/* Overlay gradiente oscuro multicapa — legibilidad máxima */
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  z-index:-1;
+/* Multi-layer gradient overlay for depth & legibility */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* Left-heavy gradient so text area is dark, right side lets image breathe */
   background:
-    linear-gradient(
-      115deg,
-      rgba(12,28,51,0.92) 0%,
-      rgba(12,28,51,0.78) 40%,
-      rgba(12,28,51,0.55) 75%,
-      rgba(12,28,51,0.45) 100%
+    linear-gradient(to right,
+      rgba(12,28,51,0.97) 0%,
+      rgba(12,28,51,0.88) 42%,
+      rgba(12,28,51,0.55) 68%,
+      rgba(12,28,51,0.30) 100%
     ),
-    linear-gradient(
-      to bottom,
-      rgba(12,28,51,0.35) 0%,
+    linear-gradient(to bottom,
+      rgba(12,28,51,0.55) 0%,
       transparent 30%,
-      transparent 65%,
-      rgba(12,28,51,0.80) 100%
+      transparent 70%,
+      rgba(12,28,51,0.75) 100%
     );
 }
 
-/* Línea amarilla decorativa lateral */
-.hero-overlay::before{
-  content:'';
-  position:absolute;
-  left:5%;
-  top:20%;
-  bottom:20%;
-  width:2px;
-  background:linear-gradient(to bottom, transparent 0%, var(--y) 20%, var(--y) 80%, transparent 100%);
-  opacity:.5;
+/* Subtle noise texture for depth */
+.hero-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.35;
 }
 
-/* Contenedor interno */
-.hero-inner{
-  position:relative;
-  z-index:1;
-  max-width:1240px;
-  margin:0 auto;
-  padding:6rem 5% 5rem;
-  width:100%;
+/* Accent diagonal stripe — industrial feel */
+.hero-stripe {
+  position: absolute;
+  top: 0;
+  right: 30%;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, var(--y) 25%, var(--y) 75%, transparent 100%);
+  opacity: 0.18;
+  z-index: 2;
 }
 
-.hero-content{
-  max-width:780px;
-  display:flex;
-  flex-direction:column;
+/* Inner content */
+.hero-inner {
+  position: relative;
+  z-index: 3;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem 5%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
 }
 
-/* Badge superior */
-.h-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  background:rgba(245,184,0,0.12);
-  border:1px solid rgba(245,184,0,0.40);
-  color:var(--y);
-  padding:8px 18px;
-  border-radius:50px;
-  font-size:.70rem;
-  font-weight:700;
-  letter-spacing:2.2px;
-  text-transform:uppercase;
-  margin-bottom:2rem;
-  width:fit-content;
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-  animation:fadeSlideUp .7s ease both;
+/* Left col — main content */
+.hero-left {
+  display: flex;
+  flex-direction: column;
 }
-.h-badge-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--y);
-  box-shadow:0 0 0 0 rgba(245,184,0,.7);
-  animation:pulseDot 2s infinite;
+
+/* Pre-title badge */
+.h-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,184,0,0.10);
+  border: 1px solid rgba(245,184,0,0.35);
+  color: var(--y);
+  padding: 7px 16px;
+  border-radius: 3px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+  animation: fadeSlideUp .6s ease both;
 }
-@keyframes pulseDot{
-  0%{box-shadow:0 0 0 0 rgba(245,184,0,.6)}
-  70%{box-shadow:0 0 0 8px rgba(245,184,0,0)}
-  100%{box-shadow:0 0 0 0 rgba(245,184,0,0)}
+.h-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--y);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100%{ opacity:1; transform:scale(1) }
+  50%{ opacity:.5; transform:scale(1.4) }
 }
 
 /* H1 */
-.hero h1{
-  font-family:'Barlow Condensed', sans-serif;
-  font-size:clamp(2.6rem, 6vw, 5.2rem);
-  font-weight:900;
-  line-height:1.02;
-  color:var(--w);
-  letter-spacing:-1px;
-  text-transform:uppercase;
-  margin-bottom:1.8rem;
-  text-shadow:0 2px 30px rgba(0,0,0,.4);
-  animation:fadeSlideUp .8s ease .1s both;
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  font-weight: 900;
+  line-height: 1.0;
+  color: var(--w);
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  animation: fadeSlideUp .7s ease .1s both;
 }
-.hero h1 .thin{
-  display:block;
-  font-family:'Inter', sans-serif;
-  font-size:.85rem;
-  font-weight:600;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.65);
-  margin-bottom:1rem;
-  text-shadow:none;
+.hero h1 .accent {
+  color: var(--y);
+  display: block;
 }
-.hero h1 .accent{
-  color:var(--y);
-  display:inline-block;
-  position:relative;
-}
-.hero h1 .accent::after{
-  content:'';
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-6px;
-  height:3px;
-  background:var(--y);
-  border-radius:2px;
-  transform:scaleX(0);
-  transform-origin:left;
-  animation:underlineGrow 1s ease 1s forwards;
-}
-@keyframes underlineGrow{
-  to{transform:scaleX(1)}
+.hero h1 .thin {
+  font-weight: 600;
+  opacity: 0.75;
+  font-size: 75%;
+  letter-spacing: 3px;
+  display: block;
+  margin-bottom: .3rem;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
 }
 
-/* Subtítulo */
-.hero-sub{
-  color:rgba(255,255,255,0.82);
-  font-size:1.05rem;
-  line-height:1.75;
-  max-width:620px;
-  margin-bottom:2.8rem;
-  font-weight:400;
-  text-shadow:0 1px 12px rgba(0,0,0,.3);
-  animation:fadeSlideUp .8s ease .25s both;
-}
-.hero-sub strong{
-  color:var(--w);
-  font-weight:600;
+/* Subheadline */
+.hero-sub {
+  color: rgba(255,255,255,0.62);
+  font-size: .95rem;
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 2.2rem;
+  font-weight: 400;
+  animation: fadeSlideUp .7s ease .2s both;
 }
 
-/* Botones CTA */
-.btns{
-  display:flex;
-  gap:1rem;
-  flex-wrap:wrap;
-  margin-bottom:3.5rem;
-  animation:fadeSlideUp .8s ease .4s both;
+/* CTA buttons */
+.btns {
+  display: flex;
+  gap: .9rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  animation: fadeSlideUp .7s ease .3s both;
 }
-.btn-p{
-  background:var(--y);
-  color:var(--b);
-  padding:15px 30px;
-  border-radius:6px;
-  font-weight:800;
-  font-size:.92rem;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  gap:.6rem;
-  transition:all .3s cubic-bezier(.4,0,.2,1);
-  border:none;
-  cursor:pointer;
-  letter-spacing:.4px;
-  font-family:'Inter', sans-serif;
-  box-shadow:0 4px 20px rgba(245,184,0,.3);
-  position:relative;
-  overflow:hidden;
+.btn-p {
+  background: var(--y);
+  color: var(--b);
+  padding: 13px 26px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: .88rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: .2s;
+  border: none;
+  cursor: pointer;
+  letter-spacing: .3px;
+  font-family: 'Inter', sans-serif;
 }
-.btn-p::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-  transition:left .6s;
+.btn-p:hover { background: var(--yl); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,184,0,.35) }
+.btn-s {
+  background: transparent;
+  color: var(--w);
+  padding: 13px 26px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: .88rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1.5px solid rgba(255,255,255,.22);
+  transition: .2s;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
 }
-.btn-p:hover{
-  background:var(--yl);
-  transform:translateY(-3px);
-  box-shadow:0 10px 30px rgba(245,184,0,.5);
-}
-.btn-p:hover::before{left:100%}
+.btn-s:hover { border-color: var(--y); color: var(--y) }
 
-.btn-s{
-  background:rgba(255,255,255,.05);
-  color:var(--w);
-  padding:15px 30px;
-  border-radius:6px;
-  font-weight:600;
-  font-size:.92rem;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  gap:.6rem;
-  border:1.5px solid rgba(255,255,255,.28);
-  transition:all .3s ease;
-  cursor:pointer;
-  font-family:'Inter', sans-serif;
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
+/* KPI grid */
+.hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .9rem;
+  animation: fadeSlideUp .7s ease .4s both;
 }
-.btn-s:hover{
-  border-color:var(--y);
-  color:var(--y);
-  background:rgba(245,184,0,.08);
-  transform:translateY(-3px);
+.kpi {
+  border-left: 3px solid var(--y);
+  padding-left: 1rem;
+  position: relative;
+}
+.kpi::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--y), var(--yd));
+  border-radius: 2px;
+}
+.kpi-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--y);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+.kpi-lbl {
+  font-size: .65rem;
+  color: rgba(255,255,255,.45);
+  margin-top: 5px;
+  line-height: 1.4;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* KPIs */
-.hero-kpis{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:2rem;
-  padding-top:2.5rem;
-  border-top:1px solid rgba(255,255,255,.12);
-  animation:fadeSlideUp .8s ease .55s both;
+/* Right col — visual block */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeSlideUp .8s ease .2s both;
 }
-.kpi{
-  display:flex;
-  flex-direction:column;
-  gap:.4rem;
-  position:relative;
-  padding-left:1rem;
-  border-left:3px solid var(--y);
+
+.hero-img-main {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(245,184,0,.12);
+  position: relative;
 }
-.kpi-num{
-  font-family:'Barlow Condensed', sans-serif;
-  font-size:clamp(1.7rem, 2.5vw, 2.2rem);
-  font-weight:900;
-  color:var(--y);
-  line-height:1;
-  letter-spacing:-0.5px;
+.hero-img-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(245,184,0,.15);
+  pointer-events: none;
 }
-.kpi-lbl{
-  font-size:.68rem;
-  color:rgba(255,255,255,.65);
-  line-height:1.4;
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
+.hero-img-main img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+/* "Certified" stamp on image */
+.hero-cert {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(12,28,51,.92);
+  border: 1px solid rgba(245,184,0,.4);
+  border-radius: 4px;
+  padding: .6rem .9rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.hero-cert-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--y);
+  line-height: 1;
+}
+.hero-cert-lbl {
+  font-size: .56rem;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+.hero-img-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.hero-img-sm {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,.3);
+  position: relative;
+}
+.hero-img-sm::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(245,184,0,.10);
+  pointer-events: none;
+}
+.hero-img-sm img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* Product ref chips below images */
+.hero-ref-chips {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+}
+.ref-chip {
+  background: rgba(245,184,0,.1);
+  border: 1px solid rgba(245,184,0,.25);
+  color: var(--y);
+  font-size: .68rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 2px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
 /* Scroll cue */
-.scroll-cue{
-  position:absolute;
-  bottom:2rem;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.6rem;
-  color:rgba(255,255,255,.5);
-  font-size:.62rem;
-  text-transform:uppercase;
-  letter-spacing:3px;
-  font-weight:600;
-  animation:fadeSlideUp 1s ease 1s both;
+.scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  color: rgba(255,255,255,.25);
+  font-size: .6rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
 }
-.scroll-line{
-  width:1px;
-  height:42px;
-  background:linear-gradient(to bottom, var(--y), transparent);
-  position:relative;
-  overflow:hidden;
+.scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, var(--y), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
 }
-.scroll-line::after{
-  content:'';
-  position:absolute;
-  top:-100%;
-  left:0;
-  width:100%;
-  height:100%;
-  background:var(--y);
-  animation:scrollMove 2s ease-in-out infinite;
-}
-@keyframes scrollMove{
-  0%{top:-100%}
-  100%{top:100%}
+@keyframes scrollLine {
+  0%{ opacity:0; transform:scaleY(0); transform-origin:top }
+  50%{ opacity:1 }
+  100%{ opacity:0; transform:scaleY(1); transform-origin:bottom }
 }
 
-/* Animación de entrada */
-@keyframes fadeSlideUp{
-  from{opacity:0; transform:translateY(24px)}
-  to{opacity:1; transform:translateY(0)}
+/* Entrance animation */
+@keyframes fadeSlideUp {
+  from { opacity:0; transform:translateY(20px) }
+  to   { opacity:1; transform:translateY(0) }
 }
 
 /* ═══════════════════════════════════════════
    HERO RESPONSIVE
 ═══════════════════════════════════════════ */
 @media(max-width:960px){
-  .hero-inner{
-    padding:4rem 5% 4rem;
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 3rem 5% 4rem;
   }
-  .hero-overlay{
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(12,28,51,0.88) 0%,
-        rgba(12,28,51,0.78) 50%,
-        rgba(12,28,51,0.92) 100%
-      );
+  .hero-overlay {
+    background: linear-gradient(to bottom,
+      rgba(12,28,51,0.95) 0%,
+      rgba(12,28,51,0.85) 60%,
+      rgba(12,28,51,0.92) 100%
+    );
   }
-  .hero-overlay::before{display:none}
-  .hero-kpis{
-    grid-template-columns:repeat(2, 1fr);
-    gap:1.5rem;
-  }
-  .hero h1{font-size:clamp(2.2rem, 7vw, 3.4rem)}
+  .hero h1 { font-size: clamp(2.4rem, 8vw, 3.4rem) }
+  .hero-right { display: none }
+  .hero-stripe { display: none }
 }
 @media(max-width:500px){
-  .hero{min-height:92vh}
-  .hero-inner{padding:3rem 5% 3.5rem}
-  .hero h1{font-size:clamp(2rem, 9vw, 2.6rem)}
-  .hero h1 .thin{font-size:.72rem; letter-spacing:3px}
-  .hero-sub{font-size:.95rem}
-  .btns{gap:.7rem; margin-bottom:2.5rem}
-  .btn-p, .btn-s{padding:13px 22px; font-size:.85rem; flex:1; justify-content:center}
-  .hero-kpis{gap:1.2rem; padding-top:2rem}
-  .kpi-num{font-size:1.5rem}
-  .kpi-lbl{font-size:.6rem}
-  .scroll-cue{display:none}
+  .hero-kpis { grid-template-columns: repeat(2,1fr) }
+  .hero h1 { font-size: clamp(2rem, 9vw, 2.8rem) }
 }
 
 /* STRIP */
@@ -606,17 +641,22 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero" aria-label="Sección principal PlateGuard">
 
-  <!-- Imagen de fondo -->
+  <!-- Background image -->
   <div class="hero-bg" aria-hidden="true">
-    <img src="hero.jpg" alt="Excavadora operando junto a infraestructura subterránea protegida por PlateGuard"/>
+    <img src="hero..jpg" alt="Excavadora operando junto a infraestructura subterránea protegida por PlateGuard"/>
   </div>
 
-  <!-- Overlay gradiente -->
+  <!-- Gradient overlay -->
   <div class="hero-overlay" aria-hidden="true"></div>
 
-  <!-- Contenido principal -->
+  <!-- Decorative diagonal stripe -->
+  <div class="hero-stripe" aria-hidden="true"></div>
+
+  <!-- Main content grid -->
   <div class="hero-inner">
-    <div class="hero-content">
+
+    <!-- LEFT: Copy -->
+    <div class="hero-left">
 
       <div class="h-badge">
         <span class="h-badge-dot" aria-hidden="true"></span>
@@ -625,13 +665,12 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
       <h1>
         <span class="thin">Sistema PlateGuard™</span>
-        Protección mecánica<br/>
-        para infraestructura<br/>
+        Protección mecánica para infraestructura
         <span class="accent">subterránea</span>
       </h1>
 
       <p class="hero-sub">
-        Cuando una excavadora impacta donde no debe, <strong>ningún procedimiento llega a tiempo</strong>.
+        Cuando una excavadora impacta donde no debe, ningún procedimiento llega a tiempo.
         PlateGuard™ es la barrera mecánica instalada entre el cucharón y su tubería, cable
         o fibra óptica — operando de forma pasiva, permanente y sin mantenimiento.
       </p>
@@ -644,24 +683,54 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
       <div class="hero-kpis" role="list" aria-label="Indicadores clave del sistema">
         <div class="kpi" role="listitem">
           <div class="kpi-num">32T</div>
-          <div class="kpi-lbl">Impacto<br/>certificado</div>
+          <div class="kpi-lbl">Impacto certificado</div>
         </div>
         <div class="kpi" role="listitem">
           <div class="kpi-num">HDPE</div>
-          <div class="kpi-lbl">Alta densidad<br/>industrial</div>
+          <div class="kpi-lbl">Alta densidad industrial</div>
         </div>
         <div class="kpi" role="listitem">
-          <div class="kpi-num">3</div>
-          <div class="kpi-lbl">Referencias<br/>modulares</div>
+          <div class="kpi-num">PG·1·2·3</div>
+          <div class="kpi-lbl">3 referencias modulares</div>
         </div>
         <div class="kpi" role="listitem">
           <div class="kpi-num">0</div>
-          <div class="kpi-lbl">Mantenimiento<br/>requerido</div>
+          <div class="kpi-lbl">Mantenimiento requerido</div>
         </div>
       </div>
 
-    </div>
-  </div>
+    </div><!-- /hero-left -->
+
+    <!-- RIGHT: Product visuals -->
+    <div class="hero-right" aria-hidden="true">
+
+      <div class="hero-img-main">
+        <img src="pg3-real.jpg" alt="Barrera PlateGuard PG-3 instalada en zanja"/>
+        <div class="hero-cert">
+          <div class="hero-cert-num">32T</div>
+          <div class="hero-cert-lbl">Certificado</div>
+        </div>
+      </div>
+
+      <div class="hero-img-row">
+        <div class="hero-img-sm">
+          <img src="pg1-real.jpg" alt="PlateGuard PG-1"/>
+        </div>
+        <div class="hero-img-sm">
+          <img src="pines.jpg" alt="Pines de sujeción PlateGuard"/>
+        </div>
+      </div>
+
+      <div class="hero-ref-chips">
+        <span class="ref-chip">PG-1</span>
+        <span class="ref-chip">PG-2</span>
+        <span class="ref-chip">PG-3</span>
+        <span class="ref-chip">Pines</span>
+      </div>
+
+    </div><!-- /hero-right -->
+
+  </div><!-- /hero-inner -->
 
   <div class="scroll-cue" aria-hidden="true">
     <div class="scroll-line"></div>
@@ -677,7 +746,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
     <div><div class="strip-n">3</div><div class="strip-l">Referencias HDPE</div></div>
     <div><div class="strip-n">32T</div><div class="strip-l">Resistencia certificada</div></div>
     <div><div class="strip-n">Gas·Telecom·Eléctrico</div><div class="strip-l">Sectores industriales</div></div>
-    <div><div class="strip-n">Global</div><div class="strip-l">Alcance internacional</div></div>
+    <div><div class="strip-n">HDPE</div><div class="strip-l">Material de alta densidad</div></div>
   </div>
 </div>
 
@@ -685,7 +754,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <section>
   <div class="sec-in">
     <div class="tag">El Problema</div>
-    <h2 style="max-width:580px">Los procedimientos solos no pueden cerrar la brecha física.</h2>
+    <h2 style="max-width:640px">Proteger la infraestructura enterrada: el reto del último metro de suelo.</h2>
     <div class="quote-blk">"En el instante del impacto, la única defensa que queda es <strong>el tiempo de reacción humano</strong>. PlateGuard™ convierte ese instante en una barrera mecánica tangible."</div>
     <div class="prob-grid">
       <div class="prob-card"><div class="prob-ico">👁️</div><div><h4>Las señalizaciones desaparecen</h4><p>Al retirar las primeras capas de suelo, las marcas de pintura y cintas dejan de ser visibles. El operador avanza desde la memoria.</p></div></div>
@@ -700,7 +769,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <section class="sec-dark">
   <div class="sec-in">
     <div class="tag">Cómo Funciona</div>
-    <h2>Instalar. Rellenar. Proteger. Sin activación.</h2>
+    <h2>Instalar. Rellenar. Proteger.</h2>
     <p style="color:rgba(255,255,255,.5);margin-top:.6rem;font-size:.86rem">Sin electricidad, sensores ni mantenimiento. Opera por presencia física permanente.</p>
     <div class="steps-row">
       <div class="step"><div class="step-n">1</div><h4>Tubería instalada</h4><p>Activo enterrado a profundidad normativa.</p></div>
@@ -720,7 +789,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
       <div class="hiw-txt">
         <h3>Principio: Sacrificio controlado</h3>
         <p>Al recibir el impacto, la Barrera PlateGuard™ absorbe y redistribuye la energía antes de que llegue al activo. La barrera puede fracturarse — el activo permanece intacto. Un elemento sacrificial reemplazable es infinitamente preferible a una ruptura de gasoducto.</p>
-        <div class="hiw-impact"><img src="hero.jpg" alt="Impacto excavadora sobre PlateGuard"/></div>
+        <div class="hiw-impact"><img src="hero..jpg" alt="Impacto excavadora sobre PlateGuard"/></div>
       </div>
     </div>
   </div>
@@ -738,7 +807,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div style="padding:1.2rem">
           <div style="background:var(--y);color:var(--b);font-size:.65rem;font-weight:900;padding:3px 10px;border-radius:50px;display:inline-block;margin-bottom:.6rem;letter-spacing:1px">REFERENCIA</div>
           <h3 style="font-size:1.2rem;font-weight:900;color:var(--b);margin-bottom:.4rem">PG-1</h3>
-          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera estrecha — ideal para zanjas angostas y tramos de fibra óptica o cables individuales.</p>
+          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera amplia — máxima cobertura lateral para zanjas anchas e infraestructura de alta densidad.</p>
           <div style="margin-top:1rem;color:var(--y);font-size:.8rem;font-weight:700">Ver especificaciones →</div>
         </div>
       </div>
@@ -756,7 +825,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div style="padding:1.2rem">
           <div style="background:var(--y);color:var(--b);font-size:.65rem;font-weight:900;padding:3px 10px;border-radius:50px;display:inline-block;margin-bottom:.6rem;letter-spacing:1px">REFERENCIA</div>
           <h3 style="font-size:1.2rem;font-weight:900;color:var(--b);margin-bottom:.4rem">PG-3</h3>
-          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera amplia — máxima cobertura lateral para zanjas anchas e infraestructura de alta densidad.</p>
+          <p style="font-size:.8rem;color:#5A6A80;line-height:1.6">Barrera estrecha — ideal para zanjas angostas y tramos de fibra óptica o cables individuales.</p>
           <div style="margin-top:1rem;color:var(--y);font-size:.8rem;font-weight:700">Ver especificaciones →</div>
         </div>
       </div>
@@ -768,7 +837,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 <section>
   <div class="sec-in">
     <div class="tag">Sectores de Aplicación</div>
-    <h2>Construido para infraestructura crítica.</h2>
+    <h2>Diseñado para protección de infraestructura subterránea.</h2>
     <div class="sol-grid">
       <div class="sol-card" onclick="go('soluciones')">
         <div class="sol-ico">🔥</div>
@@ -806,9 +875,9 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
 
 <!-- CTA -->
 <div class="cta-ban">
-  <div class="tag" style="color:var(--bm)">¿Tiene una brecha física en su estrategia de protección?</div>
-  <h2>La respuesta física que los procedimientos no pueden dar.</h2>
-  <p>Operadores de gas, telecomunicaciones e infraestructura eléctrica en todo el mundo ya protegen sus activos con PlateGuard™.</p>
+  <div class="tag" style="color:var(--bm)">Protección de Infraestructura Subterránea</div>
+  <h2>Protección mecánica para cables eléctricos, fibra óptica y tuberías de gas.</h2>
+  <p>Barrera física instalada sobre el activo durante el relleno — previene daños por excavación de terceros en redes de gas, telecomunicaciones e infraestructura eléctrica.</p>
   <div class="cta-row">
     <button class="btn-dk" onclick="go('contacto')">✉ Contáctenos</button>
     <button class="btn-out" onclick="go('productos')">Ver productos →</button>
@@ -837,15 +906,15 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="prod-layout">
           <div><div class="prod-img-wrap"><img src="pg1-real.jpg" alt="PlateGuard PG-1"/></div></div>
           <div class="prod-info">
-            <div class="prod-badge">PG-1 — Barrera Estrecha</div>
+            <div class="prod-badge">PG-1 — Barrera Amplia</div>
             <h2>PlateGuard™ PG-1</h2>
-            <p>La barrera de menor ancho del sistema PlateGuard™. Diseñada para zanjas angostas donde se instalan ductos individuales, cables de telecomunicaciones o fibra óptica. Su perfil compacto permite una instalación eficiente sin comprometer la resistencia mecánica certificada.</p>
+            <p>La referencia de mayor cobertura lateral del sistema PlateGuard™. Diseñada para zanjas anchas con múltiples ductos, redes de alta densidad o proyectos que requieren la máxima cobertura transversal. Una sola barrera PG-1 puede cubrir el ancho completo de zanjas de gran formato.</p>
             <div class="prod-specs">
               <h4>Especificaciones Técnicas</h4>
               <table class="spec-table">
                 <tr><td>Material</td><td>HDPE alta densidad</td></tr>
                 <tr><td>Resistencia al impacto</td><td>32 toneladas certificado</td></tr>
-                <tr><td>Formato</td><td>Barrera estrecha / elongada</td></tr>
+                <tr><td>Formato</td><td>Barrera de gran formato</td></tr>
                 <tr><td>Sistema de ensamblaje</td><td>Macho/hembra sin herramientas</td></tr>
                 <tr><td>Color estándar</td><td>Amarillo seguridad</td></tr>
                 <tr><td>Compatibilidad</td><td>PG-1 · PG-2 · PG-3</td></tr>
@@ -855,10 +924,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
             <div class="prod-apps">
               <h4>Aplicaciones recomendadas</h4>
               <ul class="app-list">
-                <li>Zanjas angostas para fibra óptica y cables de telecomunicaciones</li>
-                <li>Ductos individuales de distribución de gas en zonas urbanas</li>
-                <li>Tramos con espacio lateral reducido o instalaciones existentes adyacentes</li>
-                <li>Proyectos de expansión de redes donde el ancho de zanja es limitado</li>
+                <li>Zanjas de gran formato con múltiples ductos paralelos</li>
+                <li>Redes de alta densidad en corredores urbanos principales</li>
+                <li>Gasoductos de transmisión con alta cobertura requerida</li>
+                <li>Proyectos donde se requiere el mínimo número de módulos por metro lineal</li>
               </ul>
             </div>
           </div>
@@ -901,15 +970,15 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="prod-layout">
           <div><div class="prod-img-wrap"><img src="pg3-real.jpg" alt="PlateGuard PG-3"/></div></div>
           <div class="prod-info">
-            <div class="prod-badge">PG-3 — Barrera Amplia</div>
+            <div class="prod-badge">PG-3 — Barrera Estrecha</div>
             <h2>PlateGuard™ PG-3</h2>
-            <p>La referencia de mayor cobertura lateral del sistema PlateGuard™. Diseñada para zanjas anchas con múltiples ductos, redes de alta densidad o proyectos que requieren la máxima cobertura transversal. Una sola barrera PG-3 puede cubrir el ancho completo de zanjas de gran formato.</p>
+            <p>La barrera de menor ancho del sistema PlateGuard™. Diseñada para zanjas angostas donde se instalan ductos individuales, cables de telecomunicaciones o fibra óptica. Su perfil compacto permite una instalación eficiente sin comprometer la resistencia mecánica certificada.</p>
             <div class="prod-specs">
               <h4>Especificaciones Técnicas</h4>
               <table class="spec-table">
                 <tr><td>Material</td><td>HDPE alta densidad</td></tr>
                 <tr><td>Resistencia al impacto</td><td>32 toneladas certificado</td></tr>
-                <tr><td>Formato</td><td>Barrera cuadrada de gran formato</td></tr>
+                <tr><td>Formato</td><td>Barrera estrecha / elongada</td></tr>
                 <tr><td>Sistema de ensamblaje</td><td>Macho/hembra sin herramientas</td></tr>
                 <tr><td>Color estándar</td><td>Amarillo seguridad</td></tr>
                 <tr><td>Compatibilidad</td><td>PG-1 · PG-2 · PG-3</td></tr>
@@ -919,10 +988,10 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
             <div class="prod-apps">
               <h4>Aplicaciones recomendadas</h4>
               <ul class="app-list">
-                <li>Zanjas de gran formato con múltiples ductos paralelos</li>
-                <li>Redes de alta densidad en corredores urbanos principales</li>
-                <li>Gasoductos de transmisión con alta cobertura requerida</li>
-                <li>Proyectos donde se requiere el mínimo número de módulos por metro lineal</li>
+                <li>Zanjas angostas para fibra óptica y cables de telecomunicaciones</li>
+                <li>Ductos individuales de distribución de gas en zonas urbanas</li>
+                <li>Tramos con espacio lateral reducido o instalaciones existentes adyacentes</li>
+                <li>Proyectos de expansión de redes donde el ancho de zanja es limitado</li>
               </ul>
             </div>
           </div>
@@ -1153,7 +1222,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
         <div class="logo-badge">PG</div>
         <div class="logo-name">Plate<em>Guard</em>™</div>
       </a>
-      <p>Barreras Mecánicas de Protección HDPE para infraestructura subterránea crítica. Alcance global.</p>
+      <p>Barreras Mecánicas de Protección HDPE para infraestructura subterránea crítica — gas, telecomunicaciones, energía.</p>
     </div>
     <div class="ft-col"><h4>Navegación</h4><ul>
       <li><a onclick="go('home')">Inicio</a></li>
@@ -1176,7 +1245,7 @@ footer{background:var(--b);padding:4rem 5% 2rem;border-top:1px solid rgba(255,25
   </div>
   <div class="ft-bot">
     <span>© 2025 <span>PlateGuard™</span>. Todos los derechos reservados.</span>
-    <span>Infraestructura subterránea protegida — worldwide</span>
+    <span>Infraestructura subterránea protegida — gas · telecom · eléctrica</span>
   </div>
 </footer>
 
